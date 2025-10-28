@@ -3,55 +3,54 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Turbo Leaving Cert Spanish — Games</title>
-<meta name="description" content="Launchpad for Turbo Leaving Cert Spanish games." />
+<title>Turbo Leaving Cert Spanish — Synge Street</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0f172a;        /* slate-900 */
-    --panel:#111827;     /* gray-900 */
-    --text:#e5e7eb;      /* gray-200 */
-    --muted:#94a3b8;     /* slate-400 */
-    --brand:#38bdf8;     /* sky-400 */
-    --accent:#a78bfa;    /* violet-400 */
-    --ok:#22c55e;        /* green-500 */
-    --warn:#f59e0b;      /* amber-500 */
-    --bar:#1f2937;       /* gray-800 */
+    /* Light + cheerful */
+    --bg:#f7fafc;            /* very light */
+    --card:#ffffff;          /* white card */
+    --text:#0f172a;          /* slate-900 */
+    --muted:#475569;         /* slate-600 */
+    --ring:#7dd3fc;          /* sky-300 */
+    --brand:#06b6d4;         /* cyan-500 */
+    --accent:#a855f7;        /* violet-500 */
+    --ok:#16a34a;            /* green-600 */
+    --bar:#e2e8f0;           /* slate-200 */
+    --shadow:0 10px 28px rgba(2,8,23,.12);
     --radius:18px;
-    --shadow:0 12px 28px rgba(0,0,0,.35);
   }
   *{box-sizing:border-box}
   html,body{height:100%}
   body{
-    margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
+    margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans";
     color:var(--text);
+    /* Brighter gradient background */
     background:
-      radial-gradient(900px 400px at 10% -10%, rgba(56,189,248,.15), transparent),
-      radial-gradient(800px 450px at 110% 0%, rgba(167,139,250,.12), transparent),
+      radial-gradient(1200px 520px at 0% 0%, rgba(56,189,248,.25), transparent 60%),
+      radial-gradient(1100px 520px at 100% 10%, rgba(168,85,247,.20), transparent 60%),
       var(--bg);
-    overflow-x:hidden;
   }
-  /* Crest watermark */
+  /* Crest watermark (gentle, always visible) */
   .watermark{
-    position:fixed; inset:0; z-index:0; pointer-events:none;
-    display:grid; place-items:center;
+    position:fixed; inset:0; z-index:0; pointer-events:none; display:grid; place-items:center;
   }
   .watermark::before{
-    content:""; width:min(60vmin,520px); aspect-ratio:1/1;
-    background:url('./crest.png') center / contain no-repeat;
-    opacity:.13; filter:grayscale(100%) contrast(110%);
+    content:""; width:min(70vmin,600px); aspect-ratio:1/1;
+    background:url('./crest.png') center/contain no-repeat;
+    opacity:.10; /* “reassuring hug” level */
+    filter:grayscale(100%) contrast(110%);
   }
 
   header{position:sticky; top:0; z-index:2; backdrop-filter:blur(10px);
-    background:rgba(15,23,42,.72); border-bottom:1px solid rgba(148,163,184,.16)}
+    background:rgba(255,255,255,.65); border-bottom:1px solid #e2e8f0}
   .wrap{max-width:1100px; margin:0 auto; padding:16px 20px}
   .brand{display:flex; align-items:center; gap:12px}
-  .logo{width:40px; height:40px; border-radius:10px;
-    background:linear-gradient(135deg,var(--brand),var(--accent));
-    box-shadow:var(--shadow)}
-  h1{margin:0; font-size:clamp(20px,3vw,28px)}
+  .logo{width:42px; height:42px; border-radius:12px;
+    background:linear-gradient(135deg,#22d3ee,#a78bfa); box-shadow:var(--shadow)}
+  h1{margin:0; font-size:clamp(20px,3vw,30px)}
   .sub{color:var(--muted); font-size:14px}
 
   .controls{display:grid; grid-template-columns:1fr; gap:10px; margin-top:12px}
@@ -60,43 +59,41 @@
   .search{position:relative}
   .search input{
     width:100%; padding:14px 44px; border-radius:999px; outline:none;
-    background:#0a1020; border:1px solid rgba(148,163,184,.22); color:var(--text)
+    background:#ffffff; border:1.5px solid #cbd5e1; color:var(--text);
+    box-shadow:0 4px 14px rgba(2,8,23,.06);
   }
-  .search input:focus{border-color:#7dd3fc; box-shadow:0 0 0 4px rgba(125,211,252,.15)}
-  .search svg{position:absolute; left:14px; top:50%; transform:translateY(-50%); opacity:.75}
-
-  .filters{display:flex; flex-wrap:wrap; gap:8px}
-  .chip{padding:8px 12px; border-radius:999px; background:#121a31; border:1px solid rgba(148,163,184,.22); cursor:pointer}
-  .chip[data-active="true"]{background:linear-gradient(135deg,rgba(56,189,248,.25),rgba(167,139,250,.25)); border-color:rgba(125,211,252,.35)}
+  .search input:focus{border-color:var(--ring); box-shadow:0 0 0 5px rgba(125,211,252,.35)}
+  .search svg{position:absolute; left:14px; top:50%; transform:translateY(-50%); opacity:.6}
 
   main{position:relative; z-index:1; padding:26px 20px 60px}
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px}
 
   .card{
-    background:linear-gradient(180deg,rgba(255,255,255,.02),transparent), #0b1220;
-    border:1px solid rgba(148,163,184,.18); border-radius:var(--radius); overflow:hidden;
-    box-shadow:var(--shadow); display:flex; flex-direction:column; transition:transform .18s, box-shadow .18s;
+    background:var(--card);
+    border:1px solid #e2e8f0; border-radius:var(--radius); overflow:hidden;
+    box-shadow:var(--shadow); display:flex; flex-direction:column; transition:transform .16s, box-shadow .16s, border-color .16s;
   }
-  .card:hover{transform:translateY(-3px); box-shadow:0 16px 34px rgba(0,0,0,.45)}
-  .thumb{height:130px; display:grid; place-items:center; background:#0f1a33; border-bottom:1px solid rgba(148,163,184,.18)}
+  .card:hover{transform:translateY(-3px); box-shadow:0 16px 34px rgba(2,8,23,.16); border-color:#cbd5e1}
+  .thumb{height:140px; display:grid; place-items:center; background:#eef2ff; border-bottom:1px solid #e2e8f0}
   .thumb img{width:100%; height:100%; object-fit:cover}
-  .thumb .placeholder{font-weight:800; letter-spacing:.4px; opacity:.85}
+  .thumb .placeholder{font-weight:800; letter-spacing:.4px; color:#334155}
   .body{padding:14px; display:flex; flex-direction:column; gap:10px}
-  .title{font-weight:700; font-size:18px; margin:0}
-  .desc{color:var(--muted); font-size:14px; line-height:1.35; min-height:40px}
+  .title{font-weight:800; font-size:18px; margin:0}
+  .desc{color:#334155; font-size:14px; line-height:1.35; min-height:40px}
   .badges{display:flex; gap:6px; flex-wrap:wrap}
-  .badge{font-size:12px; padding:4px 8px; border-radius:999px; background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.35)}
+  .badge{font-size:12px; padding:4px 8px; border-radius:999px; color:#0b1020;
+         background:linear-gradient(135deg,#22d3ee33,#a78bfa33); border:1px solid #c7d2fe}
   .footer{display:flex; align-items:center; gap:10px}
-  .btn{flex:1; text-align:center; padding:10px 12px; border-radius:12px; color:white; text-decoration:none; font-weight:600;
-       border:1px solid rgba(148,163,184,.25)}
+  .btn{flex:1; text-align:center; padding:10px 12px; border-radius:12px; color:white; text-decoration:none; font-weight:700;
+       border:1px solid #dbeafe}
   .btn.play{background:linear-gradient(135deg,#22c55e,#16a34a)}
   .btn.play:hover{filter:brightness(1.05)}
   .btn.docs{background:linear-gradient(135deg,#38bdf8,#0284c7)}
-  .progress{height:9px; background:var(--bar); border-radius:999px; overflow:hidden; border:1px solid rgba(148,163,184,.25)}
+  .progress{height:10px; background:var(--bar); border-radius:999px; overflow:hidden; border:1px solid #cbd5e1}
   .progress > span{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--brand),var(--accent)); transition:width .35s ease}
-  .progress-label{font-size:12px; color:var(--muted)}
+  .progress-label{font-size:12px; color:#334155}
 
-  footer{position:relative; z-index:1; border-top:1px solid rgba(148,163,184,.16); padding:24px 20px; text-align:center; color:var(--muted)}
+  footer{position:relative; z-index:1; border-top:1px solid #e2e8f0; padding:24px 20px; text-align:center; color:#475569}
   .tiny{font-size:12px}
 </style>
 </head>
@@ -108,7 +105,7 @@
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Turbo Leaving Cert Spanish</h1>
+          <h1>Turbo Leaving Cert Spanish — Synge Street</h1>
           <div class="sub">All games in one place. Progress saves locally.</div>
         </div>
       </div>
@@ -118,7 +115,6 @@
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/></svg>
           <input id="q" type="search" placeholder="Search by title, level, or tag…" />
         </label>
-        <div class="filters" id="filters"></div>
       </div>
     </div>
   </header>
@@ -130,33 +126,26 @@
 
   <footer>
     <div class="wrap">
-      <div class="tiny">Tip: Add or edit games in the <b>games</b> array below. Progress reads from <code>localStorage</code>.</div>
-      <div class="tiny">© <span id="year"></span> Your School • Harold’s Cross ETSS</div>
+      <div class="tiny">© <span id="year"></span> Synge Street CBS</div>
     </div>
   </footer>
 
 <script>
-/* ========= HOW PROGRESS WORKS =========
-Each game can define one of these:
-  - progressKey: a localStorage key that stores a number 0..100 (percent)
-  - bestLevelKey + totalLevels: we compute percent as bestLevel/totalLevels*100
-If neither exists, progress = 0.
-You can also provide a custom progress function per game.
-*/
-
+/* ---------- GAME LIST (edit here to add more) ---------- */
+/* Tip: bestLevelKey (0..10) -> shows a percent. */
 const games = [
   {
     title: "Game 1 — Describing Yourself & Routine",
-    img: "", // optional image URL; leave "" to show a text placeholder
-    href: "https://seanmc114.github.io/Self-Peers-Present/"
-    desc: "Short → medium sentences. Present tense & healthy choices.",
+    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><defs><linearGradient id='g' x1='0' x2='1'><stop stop-color='%2306b6d4'/><stop offset='1' stop-color='%23a855f7'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)'/><text x='50%' y='45%' text-anchor='middle' fill='white' font-size='54' font-family='Inter,Arial'>Game 1</text><text x='50%' y='62%' text-anchor='middle' fill='white' font-size='28' font-family='Inter,Arial'>Self & Routine</text></svg>",
+    href: "https://seanmc114.github.io/Self-Peers-Present/",
+    desc: "Short → medium sentences. Present tense.",
     tags: ["A2–B1", "Present", "EN→ES"],
-    bestLevelKey: "game1_bestLevel", // store 0..10 in your game
+    bestLevelKey: "game1_bestLevel",
     totalLevels: 10
   },
   {
     title: "Game 2 — Family & Friendship",
-    img: "",
+    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><defs><linearGradient id='g' x1='0' x2='1'><stop stop-color='%2322c55e'/><stop offset='1' stop-color='%230ea5e9'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)'/><text x='50%' y='45%' text-anchor='middle' fill='white' font-size='54' font-family='Inter,Arial'>Game 2</text><text x='50%' y='62%' text-anchor='middle' fill='white' font-size='26' font-family='Inter,Arial'>Family & Friendship</text></svg>",
     href: "https://seanmc114.github.io/Family-Friends-Adjectives/",
     desc: "Adjective agreement. Positive, negative & questions.",
     tags: ["A2–B1", "Agreement", "EN→ES"],
@@ -165,7 +154,7 @@ const games = [
   },
   {
     title: "Game 3 — School & Exam Stress",
-    img: "",
+    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><defs><linearGradient id='g' x1='0' x2='1'><stop stop-color='%23f59e0b'/><stop offset='1' stop-color='%23ef4444'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)'/><text x='50%' y='45%' text-anchor='middle' fill='white' font-size='54' font-family='Inter,Arial'>Game 3</text><text x='50%' y='62%' text-anchor='middle' fill='white' font-size='26' font-family='Inter,Arial'>School & Exams</text></svg>",
     href: "https://seanmc114.github.io/School-Exams-Rad-Verbs/",
     desc: "Radical-changing verbs. Exam habits. Also practice.",
     tags: ["B1", "Present", "EN→ES"],
@@ -174,56 +163,28 @@ const games = [
   },
   {
     title: "Game 4 — Hobbies & Free Time",
-    img: "",
+    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><defs><linearGradient id='g' x1='0' x2='1'><stop stop-color='%2390cdf4'/><stop offset='1' stop-color='%238b5cf6'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)'/><text x='50%' y='45%' text-anchor='middle' fill='white' font-size='54' font-family='Inter,Arial'>Game 4</text><text x='50%' y='62%' text-anchor='middle' fill='white' font-size='26' font-family='Inter,Arial'>Hobbies & Free Time</text></svg>",
     href: "https://seanmc114.github.io/Hobbies-Free-Time-Reflex/",
-    desc: "Reflexive verbs, simple → richer Spanish. ‘sin embargo’.",
+    desc: "Reflexive verbs, simple → richer Spanish. “sin embargo”.",
     tags: ["A2–B1", "Reflexives", "EN→ES"],
     bestLevelKey: "game4_bestLevel",
     totalLevels: 10
   },
   {
-    title: "Game 5 — Technology & Social Media",
-    img: "",
+    title: "Game 5 — Technology & Socials",
+    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='1200' height='600'><defs><linearGradient id='g' x1='0' x2='1'><stop stop-color='%230ea5e9'/><stop offset='1' stop-color='%231582d4'/></linearGradient></defs><rect width='100%' height='100%' fill='url(%23g)'/><text x='50%' y='45%' text-anchor='middle' fill='white' font-size='54' font-family='Inter,Arial'>Game 5</text><text x='50%' y='62%' text-anchor='middle' fill='white' font-size='26' font-family='Inter,Arial'>Tech & Social Media</text></svg>",
     href: "https://seanmc114.github.io/LC-Tech-Socials-Pres-Contin./",
-    desc: "Present continuous. Safety & habits. ‘además’.",
+    desc: "Present continuous. Online safety. “además”.",
     tags: ["B1", "Continuous", "EN→ES"],
     bestLevelKey: "game5_bestLevel",
     totalLevels: 10
   }
-  // Add more games here — just copy an object and tweak
 ];
 
 const grid = document.getElementById("grid");
 const empty = document.getElementById("empty");
 const q = document.getElementById("q");
-const filtersEl = document.getElementById("filters");
-document.getElementById("year").textContent = new Date().getFullYear();
-
-const allTags = Array.from(new Set(games.flatMap(g => g.tags || []))).sort();
-const active = new Set();
-function makeChip(label){
-  const span = document.createElement("span");
-  span.className = "chip"; span.textContent = label; span.role = "button"; span.tabIndex = 0;
-  span.addEventListener("click", ()=>toggle(label, span));
-  span.addEventListener("keydown", e => { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); toggle(label, span);} });
-  return span;
-}
-function toggle(label, el){
-  if(active.has(label)){ active.delete(label); el.dataset.active="false"; }
-  else { active.add(label); el.dataset.active="true"; }
-  render();
-}
-if(allTags.length){
-  const reset = document.createElement("span");
-  reset.className="chip"; reset.textContent="Reset";
-  reset.addEventListener("click", ()=>{
-    active.clear(); [...filtersEl.children].forEach(c=>c.dataset.active="false"); render();
-  });
-  filtersEl.appendChild(reset);
-}
-allTags.forEach(t=>filtersEl.appendChild(makeChip(t)));
-
-q.addEventListener("input", render);
+document.getElementById("year")?.replaceWith(Object.assign(document.createElement('span'),{id:'year',textContent:new Date().getFullYear()}));
 
 function matchesSearch(g){
   const s = (q.value||"").toLowerCase().trim();
@@ -231,12 +192,6 @@ function matchesSearch(g){
   const hay = [g.title, g.desc, ...(g.tags||[])].join(" ").toLowerCase();
   return hay.includes(s);
 }
-function matchesFilters(g){
-  if(!active.size) return true;
-  return (g.tags||[]).some(t=>active.has(t));
-}
-
-// progress helpers
 function pctFromBestLevel(game){
   const best = parseInt(localStorage.getItem(game.bestLevelKey || ""), 10);
   if(Number.isFinite(best) && game.totalLevels) return Math.max(0, Math.min(100, Math.round(best / game.totalLevels * 100)));
@@ -250,41 +205,30 @@ function getProgress(game){
   if(game.bestLevelKey) return pctFromBestLevel(game);
   return 0;
 }
-
 function card(g){
   const progress = getProgress(g);
-  const tagBadges = (g.tags||[]).map(t=>`<span class="badge">${t}</span>`).join(" ");
-  const thumb = g.img
-    ? `<img src="${g.img}" alt="">`
-    : `<div class="placeholder">LC SPANISH</div>`;
   return `
   <article class="card" role="listitem">
-    <div class="thumb">${thumb}</div>
+    <div class="thumb">${g.img ? `<img src="${g.img}" alt="">` : `<div class="placeholder">LC SPANISH</div>`}</div>
     <div class="body">
       <h3 class="title">${g.title}</h3>
-      <div class="badges">${tagBadges}</div>
+      <div class="badges">${(g.tags||[]).map(t=>`<span class="badge">${t}</span>`).join(" ")}</div>
       <p class="desc">${g.desc||""}</p>
-      <div class="progress" aria-label="Progress">
-        <span style="width:${progress}%" aria-hidden="true"></span>
-      </div>
+      <div class="progress"><span style="width:${progress}%"></span></div>
       <div class="progress-label">${progress}% complete</div>
       <div class="footer">
         <a class="btn play" href="${g.href}" target="_blank" rel="noopener">Play</a>
-        ${g.repo ? `<a class="btn docs" href="${g.repo}" target="_blank" rel="noopener">Repo</a>` : ``}
       </div>
     </div>
   </article>`;
 }
-
 function render(){
-  const list = games.filter(g=>matchesSearch(g) && matchesFilters(g));
+  const list = games.filter(matchesSearch);
   grid.innerHTML = list.map(card).join("");
   empty.hidden = list.length !== 0;
 }
+q.addEventListener("input", render);
 render();
-
-// Optional: refresh progress when coming back to the tab
-document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="visible") render(); });
 </script>
 </body>
 </html>

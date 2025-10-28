@@ -19,8 +19,8 @@
     --accent:#a855f7;        /* violet-500 */
     --ok:#16a34a;            /* green-600 */
     --bar:#e2e8f0;           /* slate-200 */
-    --shadow:0 10px 28px rgba(2,8,23,.12);
-    --radius:18px;
+    --shadow:0 8px 22px rgba(2,8,23,.12);
+    --radius:16px;
   }
   *{box-sizing:border-box}
   html,body{height:100%}
@@ -33,67 +33,67 @@
       radial-gradient(1100px 520px at 100% 10%, rgba(168,85,247,.20), transparent 60%),
       var(--bg);
   }
-  /* Crest watermark (gentle, always visible) */
+  /* Crest watermark (more present, stamp-ish) */
   .watermark{
     position:fixed; inset:0; z-index:0; pointer-events:none; display:grid; place-items:center;
   }
   .watermark::before{
-    content:""; width:min(70vmin,600px); aspect-ratio:1/1;
+    content:""; width:min(78vmin,700px); aspect-ratio:1/1;
     background:url('./crest.png') center/contain no-repeat;
-    opacity:.10; /* “reassuring hug” level */
-    filter:grayscale(100%) contrast(110%);
+    opacity:.20; /* stronger */
+    filter:grayscale(100%) contrast(120%) brightness(0.95);
+    mix-blend-mode:multiply; /* stamp-ish */
   }
 
   header{position:sticky; top:0; z-index:2; backdrop-filter:blur(10px);
     background:rgba(255,255,255,.65); border-bottom:1px solid #e2e8f0}
-  .wrap{max-width:1100px; margin:0 auto; padding:16px 20px}
+  .wrap{max-width:1100px; margin:0 auto; padding:14px 18px}
   .brand{display:flex; align-items:center; gap:12px}
-  .logo{width:42px; height:42px; border-radius:12px;
+  .logo{width:40px; height:40px; border-radius:12px;
     background:linear-gradient(135deg,#22d3ee,#a78bfa); box-shadow:var(--shadow)}
-  h1{margin:0; font-size:clamp(20px,3vw,30px)}
+  h1{margin:0; font-size:clamp(20px,3vw,28px)}
   .sub{color:var(--muted); font-size:14px}
 
-  .controls{display:grid; grid-template-columns:1fr; gap:10px; margin-top:12px}
+  .controls{display:grid; grid-template-columns:1fr; gap:8px; margin-top:10px}
   @media(min-width:720px){.controls{grid-template-columns:1fr auto; align-items:center}}
 
   .search{position:relative}
   .search input{
-    width:100%; padding:14px 44px; border-radius:999px; outline:none;
+    width:100%; padding:12px 42px; border-radius:999px; outline:none;
     background:#ffffff; border:1.5px solid #cbd5e1; color:var(--text);
     box-shadow:0 4px 14px rgba(2,8,23,.06);
   }
   .search input:focus{border-color:var(--ring); box-shadow:0 0 0 5px rgba(125,211,252,.35)}
   .search svg{position:absolute; left:14px; top:50%; transform:translateY(-50%); opacity:.6}
 
-  main{position:relative; z-index:1; padding:26px 20px 60px}
-  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px}
+  main{position:relative; z-index:1; padding:22px 18px 48px}
+  /* Smaller cards so crest shows more */
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px}
 
   .card{
     background:var(--card);
     border:1px solid #e2e8f0; border-radius:var(--radius); overflow:hidden;
     box-shadow:var(--shadow); display:flex; flex-direction:column; transition:transform .16s, box-shadow .16s, border-color .16s;
   }
-  .card:hover{transform:translateY(-3px); box-shadow:0 16px 34px rgba(2,8,23,.16); border-color:#cbd5e1}
-  .thumb{height:140px; display:grid; place-items:center; background:#eef2ff; border-bottom:1px solid #e2e8f0}
-  .thumb img{width:100%; height:100%; object-fit:cover}
-  .thumb .placeholder{font-weight:800; letter-spacing:.4px; color:#334155}
-  .body{padding:14px; display:flex; flex-direction:column; gap:10px}
-  .title{font-weight:800; font-size:18px; margin:0}
-  .desc{color:#334155; font-size:14px; line-height:1.35; min-height:40px}
+  .card:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(2,8,23,.16); border-color:#cbd5e1}
+  .thumb{height:115px; display:grid; place-items:center; background:#eef2ff; border-bottom:1px solid #e2e8f0}
+  .thumb svg{width:100%; height:100%; display:block; object-fit:cover}
+  .body{padding:12px; display:flex; flex-direction:column; gap:9px}
+  .title{font-weight:800; font-size:17px; margin:0}
+  .desc{color:#334155; font-size:13.5px; line-height:1.35; min-height:38px}
   .badges{display:flex; gap:6px; flex-wrap:wrap}
   .badge{font-size:12px; padding:4px 8px; border-radius:999px; color:#0b1020;
          background:linear-gradient(135deg,#22d3ee33,#a78bfa33); border:1px solid #c7d2fe}
-  .footer{display:flex; align-items:center; gap:10px}
-  .btn{flex:1; text-align:center; padding:10px 12px; border-radius:12px; color:white; text-decoration:none; font-weight:700;
+  .footer{display:flex; align-items:center; gap:8px}
+  .btn{flex:1; text-align:center; padding:9px 10px; border-radius:12px; color:white; text-decoration:none; font-weight:700;
        border:1px solid #dbeafe}
   .btn.play{background:linear-gradient(135deg,#22c55e,#16a34a)}
   .btn.play:hover{filter:brightness(1.05)}
-  .btn.docs{background:linear-gradient(135deg,#38bdf8,#0284c7)}
-  .progress{height:10px; background:var(--bar); border-radius:999px; overflow:hidden; border:1px solid #cbd5e1}
-  .progress > span{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--brand),var(--accent)); transition:width .35s ease}
+  .progress{height:9px; background:var(--bar); border-radius:999px; overflow:hidden; border:1px solid #cbd5e1}
+  .progress > span{display:block; height:100%; width:0%; background:linear-gradient(90deg,#06b6d4,#a855f7); transition:width .35s ease}
   .progress-label{font-size:12px; color:#334155}
 
-  footer{position:relative; z-index:1; border-top:1px solid #e2e8f0; padding:24px 20px; text-align:center; color:#475569}
+  footer{position:relative; z-index:1; border-top:1px solid #e2e8f0; padding:18px; text-align:center; color:#475569}
   .tiny{font-size:12px}
 </style>
 </head>
@@ -131,12 +131,74 @@
   </footer>
 
 <script>
+/* ---------- INLINE SVG ILLUSTRATIONS (guaranteed to render) ---------- */
+const svgs = {
+  g1: `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+    <defs><linearGradient id="g1a" x1="0" x2="1"><stop stop-color="#06b6d4"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
+    <rect width="100%" height="100%" rx="24" fill="url(#g1a)"/>
+    <g fill="white" opacity=".96">
+      <rect x="350" y="160" width="500" height="280" rx="22"/>
+      <rect x="370" y="190" width="200" height="220" rx="8"/>
+      <rect x="590" y="190" width="240" height="30" rx="6"/>
+      <rect x="590" y="240" width="240" height="30" rx="6"/>
+      <rect x="590" y="290" width="240" height="30" rx="6"/>
+      <rect x="590" y="340" width="180" height="30" rx="6"/>
+    </g>
+  </svg>`,
+  g2: `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+    <defs><linearGradient id="g2a" x1="0" x2="1"><stop stop-color="#22c55e"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>
+    <rect width="100%" height="100%" rx="24" fill="url(#g2a)"/>
+    <g fill="white" opacity=".96">
+      <circle cx="460" cy="260" r="70"/><circle cx="640" cy="240" r="60"/><circle cx="760" cy="280" r="55"/>
+      <path d="M360 420q100-90 200 0v40H360z"/>
+      <path d="M560 420q90-80 180 0v40H560z"/>
+      <path d="M700 420q80-70 160 0v40H700z"/>
+    </g>
+  </svg>`,
+  g3: `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+    <defs><linearGradient id="g3a" x1="0" x2="1"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
+    <rect width="100%" height="100%" rx="24" fill="url(#g3a)"/>
+    <g fill="white" opacity=".96">
+      <path d="M300 290l300-110 300 110-300 110z"/>
+      <rect x="420" y="320" width="360" height="120" rx="14"/>
+      <rect x="450" y="340" width="120" height="18" rx="6"/>
+      <rect x="450" y="370" width="220" height="18" rx="6"/>
+    </g>
+  </svg>`,
+  g4: `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+    <defs><linearGradient id="g4a" x1="0" x2="1"><stop stop-color="#90cdf4"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
+    <rect width="100%" height="100%" rx="24" fill="url(#g4a)"/>
+    <g fill="white" opacity=".96">
+      <circle cx="420" cy="300" r="76"/>
+      <path d="M420 220v160M340 300h160" stroke="white" stroke-width="26" stroke-linecap="round"/>
+      <rect x="610" y="245" width="300" height="110" rx="16"/>
+      <rect x="630" y="265" width="120" height="22" rx="8"/>
+      <rect x="630" y="300" width="220" height="22" rx="8"/>
+    </g>
+  </svg>`,
+  g5: `
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
+    <defs><linearGradient id="g5a" x1="0" x2="1"><stop stop-color="#0ea5e9"/><stop offset="1" stop-color="#1582d4"/></linearGradient></defs>
+    <rect width="100%" height="100%" rx="24" fill="url(#g5a)"/>
+    <g fill="white" opacity=".96">
+      <rect x="360" y="170" width="220" height="300" rx="28"/>
+      <rect x="400" y="220" width="140" height="120" rx="12"/>
+      <circle cx="470" cy="410" r="14"/>
+      <rect x="630" y="210" width="240" height="160" rx="16"/>
+      <rect x="660" y="380" width="180" height="18" rx="9"/>
+    </g>
+  </svg>`
+};
+
 /* ---------- GAME LIST (edit here to add more) ---------- */
-/* Tip: bestLevelKey (0..10) -> shows a percent. */
 const games = [
   {
     title: "Game 1 — Describing Yourself & Routine",
-    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'><defs><linearGradient id='g1' x1='0' x2='1'><stop stop-color='%2306b6d4'/><stop offset='1' stop-color='%23a855f7'/></linearGradient></defs><rect width='100%' height='100%' rx='24' fill='url(%23g1)'/><g fill='white' opacity='.95'><rect x='350' y='160' width='500' height='280' rx='22'/><rect x='370' y='190' width='200' height='220' rx='8'/><rect x='590' y='190' width='240' height='30' rx='6'/><rect x='590' y='240' width='240' height='30' rx='6'/><rect x='590' y='290' width='240' height='30' rx='6'/><rect x='590' y='340' width='180' height='30' rx='6'/></g><text x='50%' y='87%' fill='white' font-size='40' font-family='Inter,Arial' text-anchor='middle' opacity='.95'>Self & Routine</text></svg>",
+    svg: svgs.g1,
     href: "https://seanmc114.github.io/Self-Peers-Present/",
     desc: "Short → medium sentences. Present tense.",
     tags: ["A2–B1", "Present", "EN→ES"],
@@ -145,7 +207,7 @@ const games = [
   },
   {
     title: "Game 2 — Family & Friendship",
-    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'><defs><linearGradient id='g2' x1='0' x2='1'><stop stop-color='%2322c55e'/><stop offset='1' stop-color='%230ea5e9'/></linearGradient></defs><rect width='100%' height='100%' rx='24' fill='url(%23g2)'/><g fill='white' opacity='.96'><circle cx='460' cy='260' r='70'/><circle cx='640' cy='240' r='60'/><circle cx='760' cy='280' r='55'/><path d='M360 420q100-90 200 0v40H360z'/><path d='M560 420q90-80 180 0v40H560z'/><path d='M700 420q80-70 160 0v40H700z'/></g><text x='50%' y='87%' fill='white' font-size='40' font-family='Inter,Arial' text-anchor='middle' opacity='.95'>Family & Friendship</text></svg>",
+    svg: svgs.g2,
     href: "https://seanmc114.github.io/Family-Friends-Adjectives/",
     desc: "Adjective agreement. Positive, negative & questions.",
     tags: ["A2–B1", "Agreement", "EN→ES"],
@@ -154,7 +216,7 @@ const games = [
   },
   {
     title: "Game 3 — School & Exam Stress",
-    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'><defs><linearGradient id='g3' x1='0' x2='1'><stop stop-color='%23f59e0b'/><stop offset='1' stop-color='%23ef4444'/></linearGradient></defs><rect width='100%' height='100%' rx='24' fill='url(%23g3)'/><g fill='white' opacity='.96'><path d='M300 290l300-110 300 110-300 110z'/><rect x='420' y='320' width='360' height='120' rx='14'/><rect x='450' y='340' width='120' height='18' rx='6'/><rect x='450' y='370' width='220' height='18' rx='6'/></g><text x='50%' y='87%' fill='white' font-size='40' font-family='Inter,Arial' text-anchor='middle' opacity='.95'>School & Exams</text></svg>",
+    svg: svgs.g3,
     href: "https://seanmc114.github.io/School-Exams-Rad-Verbs/",
     desc: "Radical-changing verbs. Exam habits.",
     tags: ["B1", "Present", "EN→ES"],
@@ -163,7 +225,7 @@ const games = [
   },
   {
     title: "Game 4 — Hobbies & Free Time",
-    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'><defs><linearGradient id='g4' x1='0' x2='1'><stop stop-color='%2390cdf4'/><stop offset='1' stop-color='%238b5cf6'/></linearGradient></defs><rect width='100%' height='100%' rx='24' fill='url(%23g4)'/><g fill='white' opacity='.96'><circle cx='420' cy='300' r='76'/><path d='M420 220v160M340 300h160' stroke='white' stroke-width='26' stroke-linecap='round'/><rect x='610' y='245' width='300' height='110' rx='16'/><rect x='630' y='265' width='120' height='22' rx='8'/><rect x='630' y='300' width='220' height='22' rx='8'/></g><text x='50%' y='87%' fill='white' font-size='40' font-family='Inter,Arial' text-anchor='middle' opacity='.95'>Hobbies & Free Time</text></svg>",
+    svg: svgs.g4,
     href: "https://seanmc114.github.io/Hobbies-Free-Time-Reflex/",
     desc: "Reflexive verbs. Simple → richer Spanish.",
     tags: ["A2–B1", "Reflexives", "EN→ES"],
@@ -172,7 +234,7 @@ const games = [
   },
   {
     title: "Game 5 — Technology & Socials",
-    img: "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 600'><defs><linearGradient id='g5' x1='0' x2='1'><stop stop-color='%230ea5e9'/><stop offset='1' stop-color='%231582d4'/></linearGradient></defs><rect width='100%' height='100%' rx='24' fill='url(%23g5)'/><g fill='white' opacity='.96'><rect x='360' y='170' width='220' height='300' rx='28'/><rect x='400' y='220' width='140' height='120' rx='12'/><circle cx='470' cy='410' r='14'/><rect x='630' y='210' width='240' height='160' rx='16'/><rect x='660' y='380' width='180' height='18' rx='9'/></g><text x='50%' y='87%' fill='white' font-size='40' font-family='Inter,Arial' text-anchor='middle' opacity='.95'>Tech & Social Media</text></svg>",
+    svg: svgs.g5,
     href: "https://seanmc114.github.io/LC-Tech-Socials-Pres-Contin./",
     desc: "Present continuous. Online safety.",
     tags: ["B1", "Continuous", "EN→ES"],
@@ -209,7 +271,7 @@ function card(g){
   const progress = getProgress(g);
   return `
   <article class="card" role="listitem">
-    <div class="thumb">${g.img ? `<img src="${g.img}" alt="">` : `<div class="placeholder">LC SPANISH</div>`}</div>
+    <div class="thumb">${g.svg || `<div class="placeholder">LC SPANISH</div>`}</div>
     <div class="body">
       <h3 class="title">${g.title}</h3>
       <div class="badges">${(g.tags||[]).map(t=>`<span class="badge">${t}</span>`).join(" ")}</div>
@@ -232,3 +294,4 @@ render();
 </script>
 </body>
 </html>
+

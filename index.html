@@ -1,0 +1,240 @@
+i<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Language Games – Launchpad</title>
+  <meta name="description" content="One homepage that links to all of your classroom language games." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;       /* slate-900 */
+      --panel: #111827;    /* gray-900 */
+      --muted: #94a3b8;    /* slate-400 */
+      --text: #e5e7eb;     /* gray-200 */
+      --brand: #38bdf8;    /* sky-400 */
+      --accent: #a78bfa;   /* violet-400 */
+      --good: #22c55e;     /* green-500 */
+      --warn: #f59e0b;     /* amber-500 */
+      --danger: #ef4444;   /* red-500 */
+      --card: #0b1220;     /* custom deep */
+      --chip: #1f2937;     /* gray-800 */
+      --focus: #7dd3fc;    /* sky-300 */
+      --shadow: 0 10px 25px rgba(0,0,0,.35);
+      --radius: 16px;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,.2), transparent),
+                  radial-gradient(900px 500px at 110% 10%, rgba(167,139,250,.18), transparent),
+                  var(--bg);
+      color: var(--text);
+    }
+    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); background: rgba(15,23,42,.75); border-bottom: 1px solid rgba(148,163,184,.15); }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 16px 20px; }
+    .brand { display: flex; align-items: center; gap: 12px; }
+    .logo {
+      width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--brand), var(--accent));
+      box-shadow: var(--shadow);
+    }
+    h1 { font-size: clamp(20px, 3vw, 28px); margin: 0; letter-spacing: .3px; }
+    .muted { color: var(--muted); }
+
+    .controls { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 12px; }
+    @media (min-width: 720px) { .controls { grid-template-columns: 1fr auto; align-items: center; } }
+
+    .search { position: relative; }
+    .search input { width: 100%; padding: 14px 44px 14px 44px; border-radius: 999px; background: #0a1020; color: var(--text); border: 1px solid rgba(148,163,184,.2); outline: none; }
+    .search input:focus { border-color: var(--focus); box-shadow: 0 0 0 4px rgba(125,211,252,.15); }
+    .search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: .75; }
+
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { padding: 8px 12px; border-radius: 999px; background: var(--chip); color: var(--text); border: 1px solid rgba(148,163,184,.2); cursor: pointer; user-select: none; }
+    .chip[data-active="true"] { background: linear-gradient(135deg, rgba(56,189,248,.25), rgba(167,139,250,.25)); border-color: rgba(125,211,252,.35); }
+
+    main { padding: 24px 20px 56px; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,.02), transparent), var(--card);
+      border: 1px solid rgba(148,163,184,.18);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex; flex-direction: column;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(0,0,0,.45); }
+    .thumb { height: 120px; background: linear-gradient(135deg, rgba(56,189,248,.25), rgba(167,139,250,.25)); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; letter-spacing: .5px; }
+    .body { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
+    .badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; background: rgba(56,189,248,.12); border: 1px solid rgba(56,189,248,.35); }
+    .badge.violet { background: rgba(167,139,250,.12); border-color: rgba(167,139,250,.35); }
+    .desc { color: var(--muted); font-size: 14px; line-height: 1.35; min-height: 38px; }
+    .footer { display: flex; gap: 8px; margin-top: 4px; }
+    .btn { flex: 1; text-align: center; padding: 10px 12px; border-radius: 12px; color: white; text-decoration: none; font-weight: 600; border: 1px solid rgba(148,163,184,.25); transition: transform .15s ease, background .15s ease; }
+    .btn.play { background: linear-gradient(135deg, #22c55e, #16a34a); }
+    .btn.play:hover { transform: translateY(-1px); }
+    .btn.docs { background: linear-gradient(135deg, #38bdf8, #0284c7); }
+
+    .empty { text-align: center; color: var(--muted); padding: 40px 10px; }
+
+    footer { padding: 24px 20px; color: var(--muted); text-align: center; border-top: 1px solid rgba(148,163,184,.15); }
+    .tiny { font-size: 12px; }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <div>
+          <h1>Language Games – Launchpad</h1>
+          <div class="muted tiny">One link to access every game.</div>
+        </div>
+      </div>
+
+      <div class="controls">
+        <label class="search" aria-label="Search games">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/></svg>
+          <input id="q" type="search" placeholder="Search by title, language, or tag…" />
+        </label>
+        <div class="filters" id="filters"></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div id="grid" class="grid" role="list"></div>
+    <div id="empty" class="empty" hidden>No games match your filters yet.</div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>Tip: Add or edit games in the <strong>games</strong> array in this file, then commit to GitHub Pages.</div>
+      <div class="tiny">© <span id="year"></span> Your Name • Hosted on GitHub Pages</div>
+    </div>
+  </footer>
+
+  <script>
+    // ====== EDIT ME: your catalogue of games ======
+    // Each entry can link to a project page (username.github.io/repo)
+    // or a folder inside this repo (username.github.io/folder/)
+    const games = [
+      {
+        title: "UNION – Spanish Present",
+        lang: ["Spanish"],
+        tags: ["A1", "Present", "Translation"],
+        desc: "Timed English→Spanish verb practice with feedback and score.",
+        play: "https://seanmc114.github.io/Turbo-Beginner/", // example
+        docs: "https://github.com/seanmc114/Turbo-Beginner"
+      },
+      {
+        title: "German Verbs – A1–A2",
+        lang: ["German"],
+        tags: ["A1", "A2", "Past", "Future"],
+        desc: "Conjugation drills with unlockable levels and leaderboard.",
+        play: "https://yourname.github.io/german-a1-a2/",
+        docs: "https://github.com/yourname/german-a1-a2"
+      },
+      {
+        title: "Irish Basics",
+        lang: ["Irish"],
+        tags: ["A1", "Vocabulary"],
+        desc: "Intro practice for classroom warm‑ups.",
+        play: "https://yourname.github.io/irish-basics/",
+        docs: "https://github.com/yourname/irish-basics"
+      }
+    ];
+
+    // ====== UI logic ======
+    const grid = document.getElementById('grid');
+    const empty = document.getElementById('empty');
+    const q = document.getElementById('q');
+    const year = document.getElementById('year');
+    year.textContent = new Date().getFullYear();
+
+    // Build language filter chips dynamically from data
+    const languages = Array.from(new Set(games.flatMap(g => g.lang))).sort();
+    const filtersEl = document.getElementById('filters');
+    const active = new Set();
+
+    function makeChip(label) {
+      const span = document.createElement('span');
+      span.className = 'chip';
+      span.textContent = label;
+      span.role = 'button';
+      span.tabIndex = 0;
+      span.addEventListener('click', () => toggle(label, span));
+      span.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(label, span); } });
+      return span;
+    }
+    function toggle(label, el){
+      if (active.has(label)) { active.delete(label); el.dataset.active = 'false'; }
+      else { active.add(label); el.dataset.active = 'true'; }
+      render();
+    }
+
+    // Add a reset chip if there are filters
+    if (languages.length) {
+      const reset = document.createElement('span');
+      reset.className = 'chip';
+      reset.textContent = 'Reset';
+      reset.addEventListener('click', ()=>{ active.clear(); [...filtersEl.children].forEach(c => c.dataset.active = 'false'); render(); });
+      filtersEl.appendChild(reset);
+    }
+
+    languages.forEach(l => filtersEl.appendChild(makeChip(l)));
+
+    q.addEventListener('input', () => render());
+
+    function matchesSearch(g) {
+      const s = (q.value || '').toLowerCase().trim();
+      if (!s) return true;
+      const hay = [g.title, ...(g.lang||[]), ...(g.tags||[]), g.desc].join(' ').toLowerCase();
+      return hay.includes(s);
+    }
+
+    function matchesFilters(g) {
+      if (!active.size) return true;
+      return g.lang?.some(l => active.has(l));
+    }
+
+    function badge(text, cls='') {
+      return `<span class="badge ${cls}">${text}</span>`;
+    }
+
+    function card(g) {
+      const langs = (g.lang||[]).map(l => badge(l)).join(' ');
+      const tags = (g.tags||[]).map(t => badge(t, 'violet')).join(' ');
+      return `
+        <article class="card" role="listitem" aria-label="${g.title}">
+          <div class="thumb">${(g.lang?.[0]||'Game')}</div>
+          <div class="body">
+            <h3 style="margin:0;font-size:18px;">${g.title}</h3>
+            <div class="badges">${langs} ${tags}</div>
+            <p class="desc">${g.desc||''}</p>
+            <div class="footer">
+              <a class="btn play" href="${g.play}" target="_blank" rel="noopener">Play</a>
+              <a class="btn docs" href="${g.docs}" target="_blank" rel="noopener">Repo</a>
+            </div>
+          </div>
+        </article>`;
+    }
+
+    function render() {
+      const list = games.filter(g => matchesSearch(g) && matchesFilters(g));
+      grid.innerHTML = list.map(card).join('');
+      empty.hidden = list.length !== 0;
+    }
+
+    render();
+  </script>
+</body>
+</html>
+ndex.html

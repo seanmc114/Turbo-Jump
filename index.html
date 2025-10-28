@@ -1,108 +1,122 @@
-i<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Language Games – Launchpad</title>
-  <meta name="description" content="One homepage that links to all of your classroom language games." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #0f172a;       /* slate-900 */
-      --panel: #111827;    /* gray-900 */
-      --muted: #94a3b8;    /* slate-400 */
-      --text: #e5e7eb;     /* gray-200 */
-      --brand: #38bdf8;    /* sky-400 */
-      --accent: #a78bfa;   /* violet-400 */
-      --good: #22c55e;     /* green-500 */
-      --warn: #f59e0b;     /* amber-500 */
-      --danger: #ef4444;   /* red-500 */
-      --card: #0b1220;     /* custom deep */
-      --chip: #1f2937;     /* gray-800 */
-      --focus: #7dd3fc;    /* sky-300 */
-      --shadow: 0 10px 25px rgba(0,0,0,.35);
-      --radius: 16px;
-    }
-    * { box-sizing: border-box; }
-    html, body { height: 100%; }
-    body {
-      margin: 0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji";
-      background: radial-gradient(1200px 600px at 10% -10%, rgba(56,189,248,.2), transparent),
-                  radial-gradient(900px 500px at 110% 10%, rgba(167,139,250,.18), transparent),
-                  var(--bg);
-      color: var(--text);
-    }
-    header { position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); background: rgba(15,23,42,.75); border-bottom: 1px solid rgba(148,163,184,.15); }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 16px 20px; }
-    .brand { display: flex; align-items: center; gap: 12px; }
-    .logo {
-      width: 36px; height: 36px; border-radius: 10px; background: linear-gradient(135deg, var(--brand), var(--accent));
-      box-shadow: var(--shadow);
-    }
-    h1 { font-size: clamp(20px, 3vw, 28px); margin: 0; letter-spacing: .3px; }
-    .muted { color: var(--muted); }
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Turbo Leaving Cert Spanish — Games</title>
+<meta name="description" content="Launchpad for Turbo Leaving Cert Spanish games." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f172a;        /* slate-900 */
+    --panel:#111827;     /* gray-900 */
+    --text:#e5e7eb;      /* gray-200 */
+    --muted:#94a3b8;     /* slate-400 */
+    --brand:#38bdf8;     /* sky-400 */
+    --accent:#a78bfa;    /* violet-400 */
+    --ok:#22c55e;        /* green-500 */
+    --warn:#f59e0b;      /* amber-500 */
+    --bar:#1f2937;       /* gray-800 */
+    --radius:18px;
+    --shadow:0 12px 28px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
+    color:var(--text);
+    background:
+      radial-gradient(900px 400px at 10% -10%, rgba(56,189,248,.15), transparent),
+      radial-gradient(800px 450px at 110% 0%, rgba(167,139,250,.12), transparent),
+      var(--bg);
+    overflow-x:hidden;
+  }
+  /* Crest watermark */
+  .watermark{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    display:grid; place-items:center;
+  }
+  .watermark::before{
+    content:""; width:min(60vmin,520px); aspect-ratio:1/1;
+    background:url('./crest.png') center / contain no-repeat;
+    opacity:.13; filter:grayscale(100%) contrast(110%);
+  }
 
-    .controls { display: grid; grid-template-columns: 1fr; gap: 10px; margin-top: 12px; }
-    @media (min-width: 720px) { .controls { grid-template-columns: 1fr auto; align-items: center; } }
+  header{position:sticky; top:0; z-index:2; backdrop-filter:blur(10px);
+    background:rgba(15,23,42,.72); border-bottom:1px solid rgba(148,163,184,.16)}
+  .wrap{max-width:1100px; margin:0 auto; padding:16px 20px}
+  .brand{display:flex; align-items:center; gap:12px}
+  .logo{width:40px; height:40px; border-radius:10px;
+    background:linear-gradient(135deg,var(--brand),var(--accent));
+    box-shadow:var(--shadow)}
+  h1{margin:0; font-size:clamp(20px,3vw,28px)}
+  .sub{color:var(--muted); font-size:14px}
 
-    .search { position: relative; }
-    .search input { width: 100%; padding: 14px 44px 14px 44px; border-radius: 999px; background: #0a1020; color: var(--text); border: 1px solid rgba(148,163,184,.2); outline: none; }
-    .search input:focus { border-color: var(--focus); box-shadow: 0 0 0 4px rgba(125,211,252,.15); }
-    .search svg { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); opacity: .75; }
+  .controls{display:grid; grid-template-columns:1fr; gap:10px; margin-top:12px}
+  @media(min-width:720px){.controls{grid-template-columns:1fr auto; align-items:center}}
 
-    .filters { display: flex; flex-wrap: wrap; gap: 8px; }
-    .chip { padding: 8px 12px; border-radius: 999px; background: var(--chip); color: var(--text); border: 1px solid rgba(148,163,184,.2); cursor: pointer; user-select: none; }
-    .chip[data-active="true"] { background: linear-gradient(135deg, rgba(56,189,248,.25), rgba(167,139,250,.25)); border-color: rgba(125,211,252,.35); }
+  .search{position:relative}
+  .search input{
+    width:100%; padding:14px 44px; border-radius:999px; outline:none;
+    background:#0a1020; border:1px solid rgba(148,163,184,.22); color:var(--text)
+  }
+  .search input:focus{border-color:#7dd3fc; box-shadow:0 0 0 4px rgba(125,211,252,.15)}
+  .search svg{position:absolute; left:14px; top:50%; transform:translateY(-50%); opacity:.75}
 
-    main { padding: 24px 20px 56px; }
-    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 18px; }
+  .filters{display:flex; flex-wrap:wrap; gap:8px}
+  .chip{padding:8px 12px; border-radius:999px; background:#121a31; border:1px solid rgba(148,163,184,.22); cursor:pointer}
+  .chip[data-active="true"]{background:linear-gradient(135deg,rgba(56,189,248,.25),rgba(167,139,250,.25)); border-color:rgba(125,211,252,.35)}
 
-    .card {
-      background: linear-gradient(180deg, rgba(255,255,255,.02), transparent), var(--card);
-      border: 1px solid rgba(148,163,184,.18);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      overflow: hidden;
-      display: flex; flex-direction: column;
-      transition: transform .2s ease, box-shadow .2s ease;
-    }
-    .card:hover { transform: translateY(-2px); box-shadow: 0 14px 32px rgba(0,0,0,.45); }
-    .thumb { height: 120px; background: linear-gradient(135deg, rgba(56,189,248,.25), rgba(167,139,250,.25)); display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 20px; letter-spacing: .5px; }
-    .body { padding: 14px; display: flex; flex-direction: column; gap: 10px; }
-    .badges { display: flex; flex-wrap: wrap; gap: 6px; }
-    .badge { font-size: 12px; padding: 4px 8px; border-radius: 999px; background: rgba(56,189,248,.12); border: 1px solid rgba(56,189,248,.35); }
-    .badge.violet { background: rgba(167,139,250,.12); border-color: rgba(167,139,250,.35); }
-    .desc { color: var(--muted); font-size: 14px; line-height: 1.35; min-height: 38px; }
-    .footer { display: flex; gap: 8px; margin-top: 4px; }
-    .btn { flex: 1; text-align: center; padding: 10px 12px; border-radius: 12px; color: white; text-decoration: none; font-weight: 600; border: 1px solid rgba(148,163,184,.25); transition: transform .15s ease, background .15s ease; }
-    .btn.play { background: linear-gradient(135deg, #22c55e, #16a34a); }
-    .btn.play:hover { transform: translateY(-1px); }
-    .btn.docs { background: linear-gradient(135deg, #38bdf8, #0284c7); }
+  main{position:relative; z-index:1; padding:26px 20px 60px}
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px}
 
-    .empty { text-align: center; color: var(--muted); padding: 40px 10px; }
+  .card{
+    background:linear-gradient(180deg,rgba(255,255,255,.02),transparent), #0b1220;
+    border:1px solid rgba(148,163,184,.18); border-radius:var(--radius); overflow:hidden;
+    box-shadow:var(--shadow); display:flex; flex-direction:column; transition:transform .18s, box-shadow .18s;
+  }
+  .card:hover{transform:translateY(-3px); box-shadow:0 16px 34px rgba(0,0,0,.45)}
+  .thumb{height:130px; display:grid; place-items:center; background:#0f1a33; border-bottom:1px solid rgba(148,163,184,.18)}
+  .thumb img{width:100%; height:100%; object-fit:cover}
+  .thumb .placeholder{font-weight:800; letter-spacing:.4px; opacity:.85}
+  .body{padding:14px; display:flex; flex-direction:column; gap:10px}
+  .title{font-weight:700; font-size:18px; margin:0}
+  .desc{color:var(--muted); font-size:14px; line-height:1.35; min-height:40px}
+  .badges{display:flex; gap:6px; flex-wrap:wrap}
+  .badge{font-size:12px; padding:4px 8px; border-radius:999px; background:rgba(56,189,248,.12); border:1px solid rgba(56,189,248,.35)}
+  .footer{display:flex; align-items:center; gap:10px}
+  .btn{flex:1; text-align:center; padding:10px 12px; border-radius:12px; color:white; text-decoration:none; font-weight:600;
+       border:1px solid rgba(148,163,184,.25)}
+  .btn.play{background:linear-gradient(135deg,#22c55e,#16a34a)}
+  .btn.play:hover{filter:brightness(1.05)}
+  .btn.docs{background:linear-gradient(135deg,#38bdf8,#0284c7)}
+  .progress{height:9px; background:var(--bar); border-radius:999px; overflow:hidden; border:1px solid rgba(148,163,184,.25)}
+  .progress > span{display:block; height:100%; width:0%; background:linear-gradient(90deg,var(--brand),var(--accent)); transition:width .35s ease}
+  .progress-label{font-size:12px; color:var(--muted)}
 
-    footer { padding: 24px 20px; color: var(--muted); text-align: center; border-top: 1px solid rgba(148,163,184,.15); }
-    .tiny { font-size: 12px; }
-
-  </style>
+  footer{position:relative; z-index:1; border-top:1px solid rgba(148,163,184,.16); padding:24px 20px; text-align:center; color:var(--muted)}
+  .tiny{font-size:12px}
+</style>
 </head>
 <body>
+  <div class="watermark" aria-hidden="true"></div>
+
   <header>
     <div class="wrap">
       <div class="brand">
         <div class="logo" aria-hidden="true"></div>
         <div>
-          <h1>Language Games – Launchpad</h1>
-          <div class="muted tiny">One link to access every game.</div>
+          <h1>Turbo Leaving Cert Spanish</h1>
+          <div class="sub">All games in one place. Progress saves locally.</div>
         </div>
       </div>
 
       <div class="controls">
         <label class="search" aria-label="Search games">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M21 21l-4.35-4.35" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/></svg>
-          <input id="q" type="search" placeholder="Search by title, language, or tag…" />
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/></svg>
+          <input id="q" type="search" placeholder="Search by title, level, or tag…" />
         </label>
         <div class="filters" id="filters"></div>
       </div>
@@ -111,130 +125,166 @@ i<!DOCTYPE html>
 
   <main class="wrap">
     <div id="grid" class="grid" role="list"></div>
-    <div id="empty" class="empty" hidden>No games match your filters yet.</div>
+    <div id="empty" class="desc" hidden>No games match your filters yet.</div>
   </main>
 
   <footer>
     <div class="wrap">
-      <div>Tip: Add or edit games in the <strong>games</strong> array in this file, then commit to GitHub Pages.</div>
-      <div class="tiny">© <span id="year"></span> Your Name • Hosted on GitHub Pages</div>
+      <div class="tiny">Tip: Add or edit games in the <b>games</b> array below. Progress reads from <code>localStorage</code>.</div>
+      <div class="tiny">© <span id="year"></span> Your School • Harold’s Cross ETSS</div>
     </div>
   </footer>
 
-  <script>
-    // ====== EDIT ME: your catalogue of games ======
-    // Each entry can link to a project page (username.github.io/repo)
-    // or a folder inside this repo (username.github.io/folder/)
-    const games = [
-      {
-        title: "UNION – Spanish Present",
-        lang: ["Spanish"],
-        tags: ["A1", "Present", "Translation"],
-        desc: "Timed English→Spanish verb practice with feedback and score.",
-        play: "https://seanmc114.github.io/Turbo-Beginner/", // example
-        docs: "https://github.com/seanmc114/Turbo-Beginner"
-      },
-      {
-        title: "German Verbs – A1–A2",
-        lang: ["German"],
-        tags: ["A1", "A2", "Past", "Future"],
-        desc: "Conjugation drills with unlockable levels and leaderboard.",
-        play: "https://yourname.github.io/german-a1-a2/",
-        docs: "https://github.com/yourname/german-a1-a2"
-      },
-      {
-        title: "Irish Basics",
-        lang: ["Irish"],
-        tags: ["A1", "Vocabulary"],
-        desc: "Intro practice for classroom warm‑ups.",
-        play: "https://yourname.github.io/irish-basics/",
-        docs: "https://github.com/yourname/irish-basics"
-      }
-    ];
+<script>
+/* ========= HOW PROGRESS WORKS =========
+Each game can define one of these:
+  - progressKey: a localStorage key that stores a number 0..100 (percent)
+  - bestLevelKey + totalLevels: we compute percent as bestLevel/totalLevels*100
+If neither exists, progress = 0.
+You can also provide a custom progress function per game.
+*/
 
-    // ====== UI logic ======
-    const grid = document.getElementById('grid');
-    const empty = document.getElementById('empty');
-    const q = document.getElementById('q');
-    const year = document.getElementById('year');
-    year.textContent = new Date().getFullYear();
+const games = [
+  {
+    title: "Game 1 — Describing Yourself & Routine",
+    img: "", // optional image URL; leave "" to show a text placeholder
+    href: "game1/index.html", // or external: https://yourusername.github.io/your-game
+    desc: "Short → medium sentences. Present tense & healthy choices.",
+    tags: ["A2–B1", "Present", "EN→ES"],
+    bestLevelKey: "game1_bestLevel", // store 0..10 in your game
+    totalLevels: 10
+  },
+  {
+    title: "Game 2 — Family & Friendship",
+    img: "",
+    href: "game2/index.html",
+    desc: "Adjective agreement. Positive, negative & questions.",
+    tags: ["A2–B1", "Agreement", "EN→ES"],
+    bestLevelKey: "game2_bestLevel",
+    totalLevels: 10
+  },
+  {
+    title: "Game 3 — School & Exam Stress",
+    img: "",
+    href: "game3/index.html",
+    desc: "Radical-changing verbs. Exam habits. Also practice.",
+    tags: ["B1", "Present", "EN→ES"],
+    bestLevelKey: "game3_bestLevel",
+    totalLevels: 10
+  },
+  {
+    title: "Game 4 — Hobbies & Free Time",
+    img: "",
+    href: "game4/index.html",
+    desc: "Reflexive verbs, simple → richer Spanish. ‘sin embargo’.",
+    tags: ["A2–B1", "Reflexives", "EN→ES"],
+    bestLevelKey: "game4_bestLevel",
+    totalLevels: 10
+  },
+  {
+    title: "Game 5 — Technology & Social Media",
+    img: "",
+    href: "game5/index.html",
+    desc: "Present continuous. Safety & habits. ‘además’.",
+    tags: ["B1", "Continuous", "EN→ES"],
+    bestLevelKey: "game5_bestLevel",
+    totalLevels: 10
+  }
+  // Add more games here — just copy an object and tweak
+];
 
-    // Build language filter chips dynamically from data
-    const languages = Array.from(new Set(games.flatMap(g => g.lang))).sort();
-    const filtersEl = document.getElementById('filters');
-    const active = new Set();
+const grid = document.getElementById("grid");
+const empty = document.getElementById("empty");
+const q = document.getElementById("q");
+const filtersEl = document.getElementById("filters");
+document.getElementById("year").textContent = new Date().getFullYear();
 
-    function makeChip(label) {
-      const span = document.createElement('span');
-      span.className = 'chip';
-      span.textContent = label;
-      span.role = 'button';
-      span.tabIndex = 0;
-      span.addEventListener('click', () => toggle(label, span));
-      span.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(label, span); } });
-      return span;
-    }
-    function toggle(label, el){
-      if (active.has(label)) { active.delete(label); el.dataset.active = 'false'; }
-      else { active.add(label); el.dataset.active = 'true'; }
-      render();
-    }
+const allTags = Array.from(new Set(games.flatMap(g => g.tags || []))).sort();
+const active = new Set();
+function makeChip(label){
+  const span = document.createElement("span");
+  span.className = "chip"; span.textContent = label; span.role = "button"; span.tabIndex = 0;
+  span.addEventListener("click", ()=>toggle(label, span));
+  span.addEventListener("keydown", e => { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); toggle(label, span);} });
+  return span;
+}
+function toggle(label, el){
+  if(active.has(label)){ active.delete(label); el.dataset.active="false"; }
+  else { active.add(label); el.dataset.active="true"; }
+  render();
+}
+if(allTags.length){
+  const reset = document.createElement("span");
+  reset.className="chip"; reset.textContent="Reset";
+  reset.addEventListener("click", ()=>{
+    active.clear(); [...filtersEl.children].forEach(c=>c.dataset.active="false"); render();
+  });
+  filtersEl.appendChild(reset);
+}
+allTags.forEach(t=>filtersEl.appendChild(makeChip(t)));
 
-    // Add a reset chip if there are filters
-    if (languages.length) {
-      const reset = document.createElement('span');
-      reset.className = 'chip';
-      reset.textContent = 'Reset';
-      reset.addEventListener('click', ()=>{ active.clear(); [...filtersEl.children].forEach(c => c.dataset.active = 'false'); render(); });
-      filtersEl.appendChild(reset);
-    }
+q.addEventListener("input", render);
 
-    languages.forEach(l => filtersEl.appendChild(makeChip(l)));
+function matchesSearch(g){
+  const s = (q.value||"").toLowerCase().trim();
+  if(!s) return true;
+  const hay = [g.title, g.desc, ...(g.tags||[])].join(" ").toLowerCase();
+  return hay.includes(s);
+}
+function matchesFilters(g){
+  if(!active.size) return true;
+  return (g.tags||[]).some(t=>active.has(t));
+}
 
-    q.addEventListener('input', () => render());
+// progress helpers
+function pctFromBestLevel(game){
+  const best = parseInt(localStorage.getItem(game.bestLevelKey || ""), 10);
+  if(Number.isFinite(best) && game.totalLevels) return Math.max(0, Math.min(100, Math.round(best / game.totalLevels * 100)));
+  return 0;
+}
+function getProgress(game){
+  if(game.progressKey){
+    const p = parseInt(localStorage.getItem(game.progressKey), 10);
+    if(Number.isFinite(p)) return Math.max(0, Math.min(100, p));
+  }
+  if(game.bestLevelKey) return pctFromBestLevel(game);
+  return 0;
+}
 
-    function matchesSearch(g) {
-      const s = (q.value || '').toLowerCase().trim();
-      if (!s) return true;
-      const hay = [g.title, ...(g.lang||[]), ...(g.tags||[]), g.desc].join(' ').toLowerCase();
-      return hay.includes(s);
-    }
+function card(g){
+  const progress = getProgress(g);
+  const tagBadges = (g.tags||[]).map(t=>`<span class="badge">${t}</span>`).join(" ");
+  const thumb = g.img
+    ? `<img src="${g.img}" alt="">`
+    : `<div class="placeholder">LC SPANISH</div>`;
+  return `
+  <article class="card" role="listitem">
+    <div class="thumb">${thumb}</div>
+    <div class="body">
+      <h3 class="title">${g.title}</h3>
+      <div class="badges">${tagBadges}</div>
+      <p class="desc">${g.desc||""}</p>
+      <div class="progress" aria-label="Progress">
+        <span style="width:${progress}%" aria-hidden="true"></span>
+      </div>
+      <div class="progress-label">${progress}% complete</div>
+      <div class="footer">
+        <a class="btn play" href="${g.href}" target="_blank" rel="noopener">Play</a>
+        ${g.repo ? `<a class="btn docs" href="${g.repo}" target="_blank" rel="noopener">Repo</a>` : ``}
+      </div>
+    </div>
+  </article>`;
+}
 
-    function matchesFilters(g) {
-      if (!active.size) return true;
-      return g.lang?.some(l => active.has(l));
-    }
+function render(){
+  const list = games.filter(g=>matchesSearch(g) && matchesFilters(g));
+  grid.innerHTML = list.map(card).join("");
+  empty.hidden = list.length !== 0;
+}
+render();
 
-    function badge(text, cls='') {
-      return `<span class="badge ${cls}">${text}</span>`;
-    }
-
-    function card(g) {
-      const langs = (g.lang||[]).map(l => badge(l)).join(' ');
-      const tags = (g.tags||[]).map(t => badge(t, 'violet')).join(' ');
-      return `
-        <article class="card" role="listitem" aria-label="${g.title}">
-          <div class="thumb">${(g.lang?.[0]||'Game')}</div>
-          <div class="body">
-            <h3 style="margin:0;font-size:18px;">${g.title}</h3>
-            <div class="badges">${langs} ${tags}</div>
-            <p class="desc">${g.desc||''}</p>
-            <div class="footer">
-              <a class="btn play" href="${g.play}" target="_blank" rel="noopener">Play</a>
-              <a class="btn docs" href="${g.docs}" target="_blank" rel="noopener">Repo</a>
-            </div>
-          </div>
-        </article>`;
-    }
-
-    function render() {
-      const list = games.filter(g => matchesSearch(g) && matchesFilters(g));
-      grid.innerHTML = list.map(card).join('');
-      empty.hidden = list.length !== 0;
-    }
-
-    render();
-  </script>
+// Optional: refresh progress when coming back to the tab
+document.addEventListener("visibilitychange", ()=>{ if(document.visibilityState==="visible") render(); });
+</script>
 </body>
 </html>
-ndex.html

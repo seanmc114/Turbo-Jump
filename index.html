@@ -7,15 +7,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f7fafc;
-  --card:#fff;
-  --text:#0f172a;
-  --muted:#475569;
-  --shadow:0 8px 22px rgba(2,8,23,.12);
-  --radius:16px;
+  --bg:#f7fafc;--card:#fff;--text:#0f172a;--muted:#475569;
+  --shadow:0 8px 22px rgba(2,8,23,.12);--radius:16px;
 }
 
-/* --- Watermark Crest --- */
+/* --- Crest watermark --- */
 .watermark{
   position:fixed;
   inset:0;
@@ -23,46 +19,50 @@
   pointer-events:none;
   display:grid;
   place-items:center;
+  animation:fadeIn 1.2s ease forwards;
 }
 .watermark::before{
   content:"";
-  width:min(80vmin,680px);
+  width:min(95vmin,900px);
   aspect-ratio:1/1;
   background:url('crest.png') center/contain no-repeat;
-  opacity:.22; /* stronger */
-  filter:grayscale(100%) contrast(120%) brightness(0.85);
+  opacity:.35;
+  filter:grayscale(100%) contrast(125%) brightness(0.9)
+          drop-shadow(0 0 12px rgba(0,0,0,.08));
   mix-blend-mode:multiply;
+  transition:opacity .4s ease;
 }
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
 
-/* --- General Layout --- */
+/* --- Layout + Cards --- */
 *{box-sizing:border-box;margin:0;padding:0}
 body{
   font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  color:var(--text);
   background:
     radial-gradient(1200px 520px at 0% 0%, rgba(56,189,248,.25), transparent 60%),
     radial-gradient(1100px 520px at 100% 10%, rgba(168,85,247,.20), transparent 60%),
     var(--bg);
+  color:var(--text);
   min-height:100vh;
 }
-header{
-  position:sticky;top:0;z-index:2;
-  background:rgba(255,255,255,.75);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid #e2e8f0;
-}
+header{position:sticky;top:0;z-index:2;background:rgba(255,255,255,.75);
+  backdrop-filter:blur(10px);border-bottom:1px solid #e2e8f0}
 .wrap{max-width:1100px;margin:auto;padding:16px}
 .brand{display:flex;align-items:center;gap:12px}
-.logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#22d3ee,#a78bfa);box-shadow:var(--shadow)}
+.logo{width:40px;height:40px;border-radius:12px;
+  background:linear-gradient(135deg,#22d3ee,#a78bfa);box-shadow:var(--shadow)}
 h1{font-size:clamp(20px,3vw,28px)}
 .sub{color:var(--muted);font-size:14px}
 .search{position:relative;margin-top:10px}
-.search input{width:100%;padding:12px 42px;border-radius:999px;border:1.5px solid #cbd5e1;background:#fff}
-.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.6}
+.search input{width:100%;padding:12px 42px;border-radius:999px;
+  border:1.5px solid #cbd5e1;background:#fff}
+.search svg{position:absolute;left:14px;top:50%;
+  transform:translateY(-50%);opacity:.6}
 main{position:relative;z-index:1;padding:22px 18px 48px;}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
 .card{background:#fff;border:1px solid #e2e8f0;border-radius:var(--radius);
- box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform .16s,box-shadow .16s}
+ box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;
+ transition:transform .16s,box-shadow .16s}
 .card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(2,8,23,.16)}
 .thumb img{width:100%;height:160px;object-fit:cover;display:block}
 .body{padding:12px;display:flex;flex-direction:column;gap:9px}
@@ -111,7 +111,7 @@ const games=[
   {title:"Game 1 — Describing Yourself & Routine",img:"https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Self-Peers-Present/",desc:"Daily routines and self-description (Present tense).",tags:["A2–B1","Present","EN→ES"],key:"g1"},
   {title:"Game 2 — Family & Friendship",img:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Family-Friends-Adjectives/",desc:"Talking about relatives and friends (agreement).",tags:["A2–B1","Agreement","EN→ES"],key:"g2"},
   {title:"Game 3 — School & Exam Stress",img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/School-Exams-Rad-Verbs/",desc:"Radical-changing verbs and school vocabulary.",tags:["B1","Present","EN→ES"],key:"g3"},
-  {title:"Game 4 — Hobbies & Free Time",img:"https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Hobbies-Free-Time-Reflex/",desc:"Reflexive verbs in leisure and hobbies contexts.",tags:["A2–B1","Reflexives","EN→ES"],key:"g4"},
+  {title:"Game 4 — Hobbies & Free Time",img:"https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Hobbies-Free-Time-Reflex/",desc:"Reflexive verbs in leisure and hobbies contexts.",tags:["A2–B1","Reflexives","EN→ES"],key:"g4"},
   {title:"Game 5 — Technology & Social Media",img:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Tech-Socials-Pres-Contin./",desc:"Present continuous and online safety.",tags:["B1","Continuous","EN→ES"],key:"g5"},
   {title:"Game 6 — Travel & Holidays (Past)",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Travel-Holidays-Preterite/",desc:"Preterite for travel and vacations.",tags:["B1","Preterite","EN→ES"],key:"g6"},
   {title:"Game 7 — Environment & Future",img:"https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Environment-Future/",desc:"Future tense and environmental issues.",tags:["B1","Future","EN→ES"],key:"g7"},

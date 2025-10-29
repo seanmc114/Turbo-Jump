@@ -9,16 +9,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
   :root{
-    /* Light + cheerful */
-    --bg:#f7fafc;            /* very light */
-    --card:#ffffff;          /* white card */
-    --text:#0f172a;          /* slate-900 */
-    --muted:#475569;         /* slate-600 */
-    --ring:#7dd3fc;          /* sky-300 */
-    --brand:#06b6d4;         /* cyan-500 */
-    --accent:#a855f7;        /* violet-500 */
-    --ok:#16a34a;            /* green-600 */
-    --bar:#e2e8f0;           /* slate-200 */
+    --bg:#f7fafc;
+    --card:#ffffff;
+    --text:#0f172a;
+    --muted:#475569;
+    --ring:#7dd3fc;
+    --brand:#06b6d4;
+    --accent:#a855f7;
+    --ok:#16a34a;
+    --bar:#e2e8f0;
     --shadow:0 8px 22px rgba(2,8,23,.12);
     --radius:16px;
   }
@@ -27,22 +26,20 @@
   body{
     margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans";
     color:var(--text);
-    /* Brighter gradient background */
     background:
       radial-gradient(1200px 520px at 0% 0%, rgba(56,189,248,.25), transparent 60%),
       radial-gradient(1100px 520px at 100% 10%, rgba(168,85,247,.20), transparent 60%),
       var(--bg);
   }
-  /* Crest watermark (more present, stamp-ish) */
   .watermark{
     position:fixed; inset:0; z-index:0; pointer-events:none; display:grid; place-items:center;
   }
   .watermark::before{
     content:""; width:min(78vmin,700px); aspect-ratio:1/1;
     background:url('./crest.png') center/contain no-repeat;
-    opacity:.20; /* stronger */
+    opacity:.20;
     filter:grayscale(100%) contrast(120%) brightness(0.95);
-    mix-blend-mode:multiply; /* stamp-ish */
+    mix-blend-mode:multiply;
   }
 
   header{position:sticky; top:0; z-index:2; backdrop-filter:blur(10px);
@@ -67,7 +64,6 @@
   .search svg{position:absolute; left:14px; top:50%; transform:translateY(-50%); opacity:.6}
 
   main{position:relative; z-index:1; padding:22px 18px 48px}
-  /* Smaller cards so crest shows more */
   .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px}
 
   .card{
@@ -77,7 +73,6 @@
   }
   .card:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(2,8,23,.16); border-color:#cbd5e1}
   .thumb{height:115px; display:grid; place-items:center; background:#eef2ff; border-bottom:1px solid #e2e8f0}
-  .thumb svg{width:100%; height:100%; display:block; object-fit:cover}
   .body{padding:12px; display:flex; flex-direction:column; gap:9px}
   .title{font-weight:800; font-size:17px; margin:0}
   .desc{color:#334155; font-size:13.5px; line-height:1.35; min-height:38px}
@@ -131,269 +126,22 @@
   </footer>
 
 <script>
-/* ---------- INLINE SVG ILLUSTRATIONS (guaranteed to render) ---------- */
+/* ---------- SVGs ---------- */
 const svgs = {
-  g1: `
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
-    <defs><linearGradient id="g1a" x1="0" x2="1"><stop stop-color="#06b6d4"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs>
-    <rect width="100%" height="100%" rx="24" fill="url(#g1a)"/>
-    <g fill="white" opacity=".96">
-      <rect x="350" y="160" width="500" height="280" rx="22"/>
-      <rect x="370" y="190" width="200" height="220" rx="8"/>
-      <rect x="590" y="190" width="240" height="30" rx="6"/>
-      <rect x="590" y="240" width="240" height="30" rx="6"/>
-      <rect x="590" y="290" width="240" height="30" rx="6"/>
-      <rect x="590" y="340" width="180" height="30" rx="6"/>
-    </g>
-  </svg>`,
-  g2: `
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
-    <defs><linearGradient id="g2a" x1="0" x2="1"><stop stop-color="#22c55e"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs>
-    <rect width="100%" height="100%" rx="24" fill="url(#g2a)"/>
-    <g fill="white" opacity=".96">
-      <circle cx="460" cy="260" r="70"/><circle cx="640" cy="240" r="60"/><circle cx="760" cy="280" r="55"/>
-      <path d="M360 420q100-90 200 0v40H360z"/>
-      <path d="M560 420q90-80 180 0v40H560z"/>
-      <path d="M700 420q80-70 160 0v40H700z"/>
-    </g>
-  </svg>`,
-  g3: `
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
-    <defs><linearGradient id="g3a" x1="0" x2="1"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs>
-    <rect width="100%" height="100%" rx="24" fill="url(#g3a)"/>
-    <g fill="white" opacity=".96">
-      <path d="M300 290l300-110 300 110-300 110z"/>
-      <rect x="420" y="320" width="360" height="120" rx="14"/>
-      <rect x="450" y="340" width="120" height="18" rx="6"/>
-      <rect x="450" y="370" width="220" height="18" rx="6"/>
-    </g>
-  </svg>`,
-  g4: `
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
-    <defs><linearGradient id="g4a" x1="0" x2="1"><stop stop-color="#90cdf4"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs>
-    <rect width="100%" height="100%" rx="24" fill="url(#g4a)"/>
-    <g fill="white" opacity=".96">
-      <circle cx="420" cy="300" r="76"/>
-      <path d="M420 220v160M340 300h160" stroke="white" stroke-width="26" stroke-linecap="round"/>
-      <rect x="610" y="245" width="300" height="110" rx="16"/>
-      <rect x="630" y="265" width="120" height="22" rx="8"/>
-      <rect x="630" y="300" width="220" height="22" rx="8"/>
-    </g>
-  </svg>`,
-  g5: `
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
-    <defs><linearGradient id="g5a" x1="0" x2="1"><stop stop-color="#0ea5e9"/><stop offset="1" stop-color="#1582d4"/></linearGradient></defs>
-    <rect width="100%" height="100%" rx="24" fill="url(#g5a)"/>
-    <g fill="white" opacity=".96">
-      <rect x="360" y="170" width="220" height="300" rx="28"/>
-      <rect x="400" y="220" width="140" height="120" rx="12"/>
-      <circle cx="470" cy="410" r="14"/>
-      <rect x="630" y="210" width="240" height="160" rx="16"/>
-      <rect x="660" y="380" width="180" height="18" rx="9"/>
-    </g>
-  </svg>`
-svgs.g6 = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
-  <defs><linearGradient id="g6a" x1="0" x2="1"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
-  <rect width="100%" height="100%" rx="24" fill="url(#g6a)"/>
-  <g fill="white" opacity=".96">
-    <circle cx="900" cy="170" r="60" opacity=".35"/>
-    <path d="M250 360l380-50 280 40-200 30-140-10-80 40z"/>
-    <path d="M360 280l110-10 210 70-260 10z"/>
-  </g>
-</svg>`;
-
-svgs.g7 = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
-  <defs><linearGradient id="g7a" x1="0" x2="1"><stop stop-color="#22c55e"/><stop offset="1" stop-color="#84cc16"/></linearGradient></defs>
-  <rect width="100%" height="100%" rx="24" fill="url(#g7a)"/>
-  <g fill="white" opacity=".96">
-    <circle cx="600" cy="320" r="120" opacity=".25"/>
-    <path d="M600 200c-80 30-120 90-130 160 80-20 140-60 160-120 30 60 80 100 160 120-10-70-50-130-130-160z"/>
-    <rect x="500" y="380" width="200" height="20" rx="10"/>
-  </g>
-</svg>`;
-
-svgs.g8 = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
-  <defs><linearGradient id="g8a" x1="0" x2="1"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#f97316"/></linearGradient></defs>
-  <rect width="100%" height="100%" rx="24" fill="url(#g8a)"/>
-  <g fill="white" opacity=".96">
-    <path d="M400 330l200-140 200 140v110H400z"/>
-    <rect x="460" y="370" width="80" height="70" rx="8"/>
-    <rect x="660" y="360" width="120" height="40" rx="8"/>
-  </g>
-</svg>`;
-
-svgs.g9 = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
-  <defs><linearGradient id="g9a" x1="0" x2="1"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs>
-  <rect width="100%" height="100%" rx="24" fill="url(#g9a)"/>
-  <g fill="white" opacity=".96">
-    <rect x="430" y="330" width="180" height="120" rx="16"/>
-    <path d="M750 250l-60 120 60-30 60 30z"/>
-    <circle cx="780" cy="220" r="30"/>
-  </g>
-</svg>`;
-
-svgs.g10 = `
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600">
-  <defs><linearGradient id="g10a" x1="0" x2="1"><stop stop-color="#a855f7"/><stop offset="1" stop-color="#ec4899"/></linearGradient></defs>
-  <rect width="100%" height="100%" rx="24" fill="url(#g10a)"/>
-  <g fill="white" opacity=".96">
-    <rect x="360" y="230" width="220" height="120" rx="16"/>
-    <rect x="650" y="270" width="220" height="120" rx="16"/>
-    <rect x="560" y="390" width="80" height="18" rx="9"/>
-  </g>
-</svg>`;
-
+  g1:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="g1a" x1="0" x2="1"><stop stop-color="#06b6d4"/><stop offset="1" stop-color="#a855f7"/></linearGradient></defs><rect width="100%" height="100%" rx="24" fill="url(#g1a)"/><g fill="white" opacity=".96"><rect x="350" y="160" width="500" height="280" rx="22"/><rect x="370" y="190" width="200" height="220" rx="8"/><rect x="590" y="190" width="240" height="30" rx="6"/><rect x="590" y="240" width="240" height="30" rx="6"/><rect x="590" y="290" width="240" height="30" rx="6"/><rect x="590" y="340" width="180" height="30" rx="6"/></g></svg>`,
+  g2:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="g2a" x1="0" x2="1"><stop stop-color="#22c55e"/><stop offset="1" stop-color="#0ea5e9"/></linearGradient></defs><rect width="100%" height="100%" rx="24" fill="url(#g2a)"/><g fill="white" opacity=".96"><circle cx="460" cy="260" r="70"/><circle cx="640" cy="240" r="60"/><circle cx="760" cy="280" r="55"/><path d="M360 420q100-90 200 0v40H360z"/><path d="M560 420q90-80 180 0v40H560z"/><path d="M700 420q80-70 160 0v40H700z"/></g></svg>`,
+  g3:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="g3a" x1="0" x2="1"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#ef4444"/></linearGradient></defs><rect width="100%" height="100%" rx="24" fill="url(#g3a)"/><g fill="white" opacity=".96"><path d="M300 290l300-110 300 110-300 110z"/><rect x="420" y="320" width="360" height="120" rx="14"/><rect x="450" y="340" width="120" height="18" rx="6"/><rect x="450" y="370" width="220" height="18" rx="6"/></g></svg>`,
+  g4:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="g4a" x1="0" x2="1"><stop stop-color="#90cdf4"/><stop offset="1" stop-color="#8b5cf6"/></linearGradient></defs><rect width="100%" height="100%" rx="24" fill="url(#g4a)"/><g fill="white" opacity=".96"><circle cx="420" cy="300" r="76"/><path d="M420 220v160M340 300h160" stroke="white" stroke-width="26" stroke-linecap="round"/><rect x="610" y="245" width="300" height="110" rx="16"/><rect x="630" y="265" width="120" height="22" rx="8"/><rect x="630" y="300" width="220" height="22" rx="8"/></g></svg>`,
+  g5:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="g5a" x1="0" x2="1"><stop stop-color="#0ea5e9"/><stop offset="1" stop-color="#1582d4"/></linearGradient></defs><rect width="100%" height="100%" rx="24" fill="url(#g5a)"/><g fill="white" opacity=".96"><rect x="360" y="170" width="220" height="300" rx="28"/><rect x="400" y="220" width="140" height="120" rx="12"/><circle cx="470" cy="410" r="14"/><rect x="630" y="210" width="240" height="160" rx="16"/><rect x="660" y="380" width="180" height="18" rx="9"/></g></svg>`,
+  g6:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="g6a" x1="0" x2="1"><stop stop-color="#22d3ee"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs><rect width="100%" height="100%" rx="24" fill="url(#g6a)"/><g fill="white" opacity=".96"><circle cx="900" cy="170" r="60" opacity=".35"/><path d="M250 360l380-50 280 40-200 30-140-10-80 40z"/><path d="M360 280l110-10 210 70-260 10z"/></g></svg>`,
+  g7:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="g7a" x1="0" x2="1"><stop stop-color="#22c55e"/><stop offset="1" stop-color="#84cc16"/></linearGradient></defs><rect width="100%" height="100%" rx="24" fill="url(#g7a)"/><g fill="white" opacity=".96"><circle cx="600" cy="320" r="120" opacity=".25"/><path d="M600 200c-80 30-120 90-130 160 80-20 140-60 160-120 30 60 80 100 160 120-10-70-50-130-130-160z"/><rect x="500" y="380" width="200" height="20" rx="10"/></g></svg>`,
+  g8:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="g8a" x1="0" x2="1"><stop stop-color="#f59e0b"/><stop offset="1" stop-color="#f97316"/></linearGradient></defs><rect width="100%" height="100%" rx="24" fill="url(#g8a)"/><g fill="white" opacity=".96"><path d="M400 330l200-140 200 140v110H400z"/><rect x="460" y="370" width="80" height="70" rx="8"/><rect x="660" y="360" width="120" height="40" rx="8"/></g></svg>`,
+  g9:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="g9a" x1="0" x2="1"><stop stop-color="#6366f1"/><stop offset="1" stop-color="#22d3ee"/></linearGradient></defs><rect width="100%" height="100%" rx="24" fill="url(#g9a)"/><g fill="white" opacity=".96"><rect x="430" y="330" width="180" height="120" rx="16"/><path d="M750 250l-60 120 60-30 60 30z"/><circle cx="780" cy="220" r="30"/></g></svg>`,
+  g10:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><linearGradient id="g10a" x1="0" x2="1"><stop stop-color="#a855f7"/><stop offset="1" stop-color="#ec4899"/></linearGradient></defs><rect width="100%" height="100%" rx="24" fill="url(#g10a)"/><g fill="white" opacity=".96"><rect x="360" y="230" width="220" height="120" rx="16"/><rect x="650" y="270" width="220" height="120" rx="16"/><rect x="560" y="390" width="80" height="18" rx="9"/></g></svg>`
 };
 
-/* ---------- GAME LIST (edit here to add more) ---------- */
+/* ---------- GAME LIST ---------- */
 const games = [
-  {
-    title: "Game 1 — Describing Yourself & Routine",
-    svg: svgs.g1,
-    href: "https://seanmc114.github.io/Self-Peers-Present/",
-    desc: "Short → medium sentences. Present tense.",
-    tags: ["A2–B1", "Present", "EN→ES"],
-    bestLevelKey: "game1_bestLevel",
-    totalLevels: 10
-  },
-  {
-    title: "Game 2 — Family & Friendship",
-    svg: svgs.g2,
-    href: "https://seanmc114.github.io/Family-Friends-Adjectives/",
-    desc: "Adjective agreement. Positive, negative & questions.",
-    tags: ["A2–B1", "Agreement", "EN→ES"],
-    bestLevelKey: "game2_bestLevel",
-    totalLevels: 10
-  },
-  {
-    title: "Game 3 — School & Exam Stress",
-    svg: svgs.g3,
-    href: "https://seanmc114.github.io/School-Exams-Rad-Verbs/",
-    desc: "Radical-changing verbs. Exam habits.",
-    tags: ["B1", "Present", "EN→ES"],
-    bestLevelKey: "game3_bestLevel",
-    totalLevels: 10
-  },
-  {
-    title: "Game 4 — Hobbies & Free Time",
-    svg: svgs.g4,
-    href: "https://seanmc114.github.io/Hobbies-Free-Time-Reflex/",
-    desc: "Reflexive verbs. Simple → richer Spanish.",
-    tags: ["A2–B1", "Reflexives", "EN→ES"],
-    bestLevelKey: "game4_bestLevel",
-    totalLevels: 10
-  },
-  {
-    title: "Game 5 — Technology & Socials",
-    svg: svgs.g5,
-    href: "https://seanmc114.github.io/LC-Tech-Socials-Pres-Contin./",
-    desc: "Present continuous. Online safety.",
-    tags: ["B1", "Continuous", "EN→ES"],
-    bestLevelKey: "game5_bestLevel",
-    totalLevels: 10
-  }
-{
-  title: "Game 6 — Travel & Holidays",
-  svg: svgs.g6,
-  href: "https://seanmc114.github.io/Travel-Holidays-Preterite/",   // ← update if different
-  desc: "Preterite. Trips, transport, accommodation.",
-  tags: ["B1", "Preterite", "EN→ES"],
-  bestLevelKey: "game6_bestLevel",
-  totalLevels: 10
-},
-{
-  title: "Game 7 — Environment & Future",
-  svg: svgs.g7,
-  href: "https://seanmc114.github.io/Environment-Future/",       // ← update if different
-  desc: "Future, Environment, Challanges.",
-  tags: ["B1", "Future", "EN→ES"],
-  bestLevelKey: "game7_bestLevel",
-  totalLevels: 10
-},
-{
-  title: "Game 8 — Holidays, Travel, Past",
-  svg: svgs.g8,
-  href: "https://seanmc114.github.io/LC-Travel-Holidays-Past/",          // ← update if different
-  desc: "Travel, Holidays, Past Tense",
-  tags: ["A2–B1", "Past", "EN→ES"],
-  bestLevelKey: "game8_bestLevel",
-  totalLevels: 10
-},
-{
-  title: "Game 9 — Future Plans",
-  svg: svgs.g9,
-  href: "https://seanmc114.github.io/LC-Future-Plans/
-    ",      // ← update if different
-  desc: "Future & Conditional. Jobs, ambitions.",
-  tags: ["B1–B2", "Future/Cond.", "EN→ES"],
-  bestLevelKey: "game9_bestLevel",
-  totalLevels: 10
-},
-{
-  title: "TURBO",
-  svg: svgs.g10,
-  href: "https://seanmc114.github.io/Turbo/", // ← update if different
-  desc: "Lovely Verbs",
-  tags: ["Verbs", "All tenses", "EN→ES"],
-  bestLevelKey: "game10_bestLevel",
-  totalLevels: 10
-}
-
-];
-
-const grid = document.getElementById("grid");
-const empty = document.getElementById("empty");
-const q = document.getElementById("q");
-document.getElementById("year")?.replaceWith(Object.assign(document.createElement('span'),{id:'year',textContent:new Date().getFullYear()}));
-
-function matchesSearch(g){
-  const s = (q.value||"").toLowerCase().trim();
-  if(!s) return true;
-  const hay = [g.title, g.desc, ...(g.tags||[])].join(" ").toLowerCase();
-  return hay.includes(s);
-}
-function pctFromBestLevel(game){
-  const best = parseInt(localStorage.getItem(game.bestLevelKey || ""), 10);
-  if(Number.isFinite(best) && game.totalLevels) return Math.max(0, Math.min(100, Math.round(best / game.totalLevels * 100)));
-  return 0;
-}
-function getProgress(game){
-  if(game.progressKey){
-    const p = parseInt(localStorage.getItem(game.progressKey), 10);
-    if(Number.isFinite(p)) return Math.max(0, Math.min(100, p));
-  }
-  if(game.bestLevelKey) return pctFromBestLevel(game);
-  return 0;
-}
-function card(g){
-  const progress = getProgress(g);
-  return `
-  <article class="card" role="listitem">
-    <div class="thumb">${g.svg || `<div class="placeholder">LC SPANISH</div>`}</div>
-    <div class="body">
-      <h3 class="title">${g.title}</h3>
-      <div class="badges">${(g.tags||[]).map(t=>`<span class="badge">${t}</span>`).join(" ")}</div>
-      <p class="desc">${g.desc||""}</p>
-      <div class="progress"><span style="width:${progress}%"></span></div>
-      <div class="progress-label">${progress}% complete</div>
-      <div class="footer">
-        <a class="btn play" href="${g.href}" target="_blank" rel="noopener">Play</a>
-      </div>
-    </div>
-  </article>`;
-}
-function render(){
-  const list = games.filter(matchesSearch);
-  grid.innerHTML = list.map(card).join("");
-  empty.hidden = list.length !== 0;
-}
-q.addEventListener("input", render);
-render();
-</script>
-</body>
-</html>
-
+  {title:"Game 1 — Describing Yourself & Routine",svg:svgs.g1,href:"https://seanmc114.github.io/Self-Peers-Present/",desc:"Short → medium sentences. Present tense.",tags:["A2–B1","Present","EN→ES"],bestLevelKey:"game1_bestLevel",totalLevels:10},
+  {title:"Game 2 — Family & Friendship",svg:svgs.g2,href:"https://seanmc114.github.io/Family-Friends-Adjectives/",desc:"Adjective agreement. Positive, negative & questions.",tags:["A2–B1","Agreement","EN→ES"],bestLevelKey:"game2_bestLevel",totalLevels:10},
+  {title:"Game 3 — School & Exam Stress",svg:svgs.g

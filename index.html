@@ -13,12 +13,7 @@
 
 /* --- Crest watermark --- */
 .watermark{
-  position:fixed;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
-  display:grid;
-  place-items:center;
+  position:fixed;inset:0;z-index:0;pointer-events:none;display:grid;place-items:center;
   animation:fadeIn 1.2s ease forwards;
 }
 .watermark::before{
@@ -107,17 +102,20 @@ footer{text-align:center;padding:18px;border-top:1px solid #e2e8f0;color:#475569
 <footer>© <span id="year"></span> Synge Street CBS</footer>
 
 <script>
+// --- Game data (all share the same storage prefix system) ---
+const STORAGE_PREFIX = "tqplus:v3:best:";
+
 const games=[
-  {title:"Game 1 — Describing Yourself & Routine",img:"https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Self-Peers-Present/",desc:"Daily routines and self-description (Present tense).",tags:["A2–B1","Present","EN→ES"],key:"g1"},
-  {title:"Game 2 — Family & Friendship",img:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Family-Friends-Adjectives/",desc:"Talking about relatives and friends (agreement).",tags:["A2–B1","Agreement","EN→ES"],key:"g2"},
-  {title:"Game 3 — School & Exam Stress",img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/School-Exams-Rad-Verbs/",desc:"Radical-changing verbs and school vocabulary.",tags:["B1","Present","EN→ES"],key:"g3"},
-  {title:"Game 4 — Hobbies & Free Time",img:"https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Hobbies-Free-Time-Reflex/",desc:"Reflexive verbs in leisure and hobbies contexts.",tags:["A2–B1","Reflexives","EN→ES"],key:"g4"},
-  {title:"Game 5 — Technology & Social Media",img:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Tech-Socials-Pres-Contin./",desc:"Present continuous and online safety.",tags:["B1","Continuous","EN→ES"],key:"g5"},
-  {title:"Game 6 — Travel & Holidays (Past)",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Travel-Holidays-Preterite/",desc:"Preterite for travel and vacations.",tags:["B1","Preterite","EN→ES"],key:"g6"},
-  {title:"Game 7 — Environment & Future",img:"https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Environment-Future/",desc:"Future tense and environmental issues.",tags:["B1","Future","EN→ES"],key:"g7"},
-  {title:"Game 8 — Travel Memories (Past Tense)",img:"https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Travel-Holidays-Past/",desc:"Talking about holidays in the past.",tags:["A2–B1","Past","EN→ES"],key:"g8"},
-  {title:"Game 9 — Future Plans & Jobs",img:"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Future-Plans/",desc:"Future and conditional — ambitions & careers.",tags:["B1–B2","Future/Cond.","EN→ES"],key:"g9"},
-  {title:"TURBO — Lovely Verbs",img:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Turbo/",desc:"Verb mastery across all tenses.",tags:["Verbs","All tenses","EN→ES"],key:"g10"}
+  {title:"Game 1 — Describing Yourself & Routine", tense:"present", img:"https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=800&q=60", href:"https://seanmc114.github.io/Self-Peers-Present/", desc:"Daily routines and self-description (Present tense).", tags:["A2–B1","Present","EN→ES"]},
+  {title:"Game 2 — Family & Friendship", tense:"family", img:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60", href:"https://seanmc114.github.io/Family-Friends-Adjectives/", desc:"Talking about relatives and friends (agreement).", tags:["A2–B1","Agreement","EN→ES"]},
+  {title:"Game 3 — School & Exam Stress", tense:"school", img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60", href:"https://seanmc114.github.io/School-Exams-Rad-Verbs/", desc:"Radical-changing verbs and school vocabulary.", tags:["B1","Present","EN→ES"]},
+  {title:"Game 4 — Hobbies & Free Time", tense:"hobbies", img:"https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?auto=format&fit=crop&w=800&q=60", href:"https://seanmc114.github.io/Hobbies-Free-Time-Reflex/", desc:"Reflexive verbs in leisure and hobbies contexts.", tags:["A2–B1","Reflexives","EN→ES"]},
+  {title:"Game 5 — Technology & Social Media", tense:"tech", img:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60", href:"https://seanmc114.github.io/LC-Tech-Socials-Pres-Contin./", desc:"Present continuous and online safety.", tags:["B1","Continuous","EN→ES"]},
+  {title:"Game 6 — Travel & Holidays (Past)", tense:"past", img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60", href:"https://seanmc114.github.io/Travel-Holidays-Preterite/", desc:"Preterite for travel and vacations.", tags:["B1","Preterite","EN→ES"]},
+  {title:"Game 7 — Environment & Future", tense:"future", img:"https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=60", href:"https://seanmc114.github.io/Environment-Future/", desc:"Future tense and environmental issues.", tags:["B1","Future","EN→ES"]},
+  {title:"Game 8 — Travel Memories (Past Tense)", tense:"travelpast", img:"https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=60", href:"https://seanmc114.github.io/LC-Travel-Holidays-Past/", desc:"Talking about holidays in the past.", tags:["A2–B1","Past","EN→ES"]},
+  {title:"Game 9 — Future Plans & Jobs", tense:"plans", img:"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60", href:"https://seanmc114.github.io/LC-Future-Plans/", desc:"Future and conditional — ambitions & careers.", tags:["B1–B2","Future/Cond.","EN→ES"]},
+  {title:"TURBO — Lovely Verbs", tense:"turbo", img:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=60", href:"https://seanmc114.github.io/Turbo/", desc:"Verb mastery across all tenses.", tags:["Verbs","All tenses","EN→ES"]}
 ];
 
 const grid=document.getElementById("grid");
@@ -125,11 +123,22 @@ const empty=document.getElementById("empty");
 const q=document.getElementById("q");
 document.getElementById("year").textContent=new Date().getFullYear();
 
+// --- Calculate % complete by counting keys with the correct prefix ---
+function pct(g){
+  const prefix = STORAGE_PREFIX + g.tense + ":";
+  let count = 0;
+  for (let i=0;i<localStorage.length;i++){
+    const k = localStorage.key(i);
+    if (k.startsWith(prefix)) count++;
+  }
+  const done = Math.min(count, 10);
+  return Math.round((done/10)*100);
+}
+
 function matchesSearch(g){
   const s=(q.value||"").toLowerCase().trim();
   return !s || (g.title+g.desc+g.tags.join(" ")).toLowerCase().includes(s);
 }
-function pct(g){const n=parseInt(localStorage.getItem(g.key)||0,10);return Math.min(100,Math.round(n/10*100));}
 function card(g){
   const p=pct(g);
   return `<article class="card">

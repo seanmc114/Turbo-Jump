@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -186,4 +187,22 @@ function card(g){
     <div class="body">
       <h3 class="title">${g.title}</h3>
       <div class="badges">${(g.tags||[]).map(t=>`<span class="badge">${t}</span>`).join(" ")}</div>
-      <p class="desc">${g.desc
+      <p class="desc">${g.desc}</p>
+      <div class="progress"><span style="width:${progress}%"></span></div>
+      <div class="progress-label">${progress}% complete</div>
+      <div class="footer">
+        <a class="btn play" href="${g.href}" target="_blank" rel="noopener">Play</a>
+      </div>
+    </div>
+  </article>`;
+}
+function render(){
+  const list=games.filter(matchesSearch);
+  grid.innerHTML=list.map(card).join("");
+  empty.hidden=list.length!==0;
+}
+q.addEventListener("input",render);
+render();
+</script>
+</body>
+</html>

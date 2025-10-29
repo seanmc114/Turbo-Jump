@@ -4,147 +4,90 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Turbo Leaving Cert Spanish — Synge Street</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f7fafc;
-  --card:#ffffff;
-  --text:#0f172a;
-  --muted:#475569;
-  --ring:#7dd3fc;
-  --brand:#06b6d4;
-  --accent:#a855f7;
-  --ok:#16a34a;
-  --bar:#e2e8f0;
-  --shadow:0 8px 22px rgba(2,8,23,.12);
-  --radius:16px;
+  --bg:#f7fafc;--card:#ffffff;--text:#0f172a;--muted:#475569;--ring:#7dd3fc;
+  --shadow:0 8px 22px rgba(2,8,23,.12);--radius:16px;
 }
-*{box-sizing:border-box}
-html,body{height:100%}
+*{box-sizing:border-box;margin:0;padding:0}
 body{
-  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,"Noto Sans";
+  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
   color:var(--text);
-  background:
-    radial-gradient(1200px 520px at 0% 0%, rgba(56,189,248,.25), transparent 60%),
-    radial-gradient(1100px 520px at 100% 10%, rgba(168,85,247,.20), transparent 60%),
-    var(--bg);
+  background:radial-gradient(1000px 400px at 0% 0%,rgba(56,189,248,.25),transparent 60%),
+             radial-gradient(1000px 400px at 100% 0%,rgba(168,85,247,.20),transparent 60%),
+             var(--bg);
+  min-height:100vh;
 }
-.watermark{position:fixed; inset:0; z-index:0; pointer-events:none; display:grid; place-items:center;}
-.watermark::before{
-  content:""; width:min(78vmin,700px); aspect-ratio:1/1;
-  background:url('./crest.png') center/contain no-repeat;
-  opacity:.20; filter:grayscale(100%) contrast(120%) brightness(0.95);
-  mix-blend-mode:multiply;
-}
-header{position:sticky; top:0; z-index:2; backdrop-filter:blur(10px);
-  background:rgba(255,255,255,.65); border-bottom:1px solid #e2e8f0}
-.wrap{max-width:1100px; margin:0 auto; padding:14px 18px}
-.brand{display:flex; align-items:center; gap:12px}
-.logo{width:40px; height:40px; border-radius:12px;
-  background:linear-gradient(135deg,#22d3ee,#a78bfa); box-shadow:var(--shadow)}
-h1{margin:0; font-size:clamp(20px,3vw,28px)}
-.sub{color:var(--muted); font-size:14px}
-.controls{display:grid; grid-template-columns:1fr; gap:8px; margin-top:10px}
-@media(min-width:720px){.controls{grid-template-columns:1fr auto; align-items:center}}
-.search{position:relative}
-.search input{
-  width:100%; padding:12px 42px; border-radius:999px; outline:none;
-  background:#ffffff; border:1.5px solid #cbd5e1; color:var(--text);
-  box-shadow:0 4px 14px rgba(2,8,23,.06);
-}
-.search input:focus{border-color:var(--ring); box-shadow:0 0 0 5px rgba(125,211,252,.35)}
-.search svg{position:absolute; left:14px; top:50%; transform:translateY(-50%); opacity:.6}
-main{position:relative; z-index:1; padding:22px 18px 48px}
-.grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(230px,1fr)); gap:16px}
+header{position:sticky;top:0;z-index:2;background:rgba(255,255,255,.65);backdrop-filter:blur(10px);border-bottom:1px solid #e2e8f0}
+.wrap{max-width:1100px;margin:auto;padding:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.logo{width:40px;height:40px;border-radius:12px;background:linear-gradient(135deg,#22d3ee,#a78bfa);box-shadow:var(--shadow)}
+h1{font-size:clamp(20px,3vw,28px)}
+.sub{color:var(--muted);font-size:14px}
+.search{position:relative;margin-top:10px}
+.search input{width:100%;padding:12px 42px;border-radius:999px;border:1.5px solid #cbd5e1;background:#fff}
+.search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.6}
+main{padding:22px 18px 48px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:16px}
 .card{
-  background:var(--card);
-  border:1px solid #e2e8f0; border-radius:var(--radius);
-  box-shadow:var(--shadow); overflow:hidden; display:flex; flex-direction:column;
-  transition:transform .16s, box-shadow .16s;
+  background:var(--card);border:1px solid #e2e8f0;border-radius:var(--radius);
+  overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
+  transition:transform .16s,box-shadow .16s;
 }
-.card:hover{transform:translateY(-3px); box-shadow:0 14px 30px rgba(2,8,23,.16);}
-.thumb{height:115px; display:grid; place-items:center; background:#eef2ff; border-bottom:1px solid #e2e8f0}
-.body{padding:12px; display:flex; flex-direction:column; gap:9px}
-.title{font-weight:800; font-size:17px; margin:0}
-.desc{color:#334155; font-size:13.5px; line-height:1.35; min-height:38px}
-.badges{display:flex; gap:6px; flex-wrap:wrap}
-.badge{font-size:12px; padding:4px 8px; border-radius:999px; color:#0b1020;
- background:linear-gradient(135deg,#22d3ee33,#a78bfa33); border:1px solid #c7d2fe}
-.footer{display:flex; align-items:center; gap:8px}
-.btn{flex:1; text-align:center; padding:9px 10px; border-radius:12px; color:white; text-decoration:none; font-weight:700;
- border:1px solid #dbeafe}
-.btn.play{background:linear-gradient(135deg,#22c55e,#16a34a)}
-.progress{height:9px; background:var(--bar); border-radius:999px; overflow:hidden; border:1px solid #cbd5e1}
-.progress > span{display:block; height:100%; background:linear-gradient(90deg,#06b6d4,#a855f7)}
-.progress-label{font-size:12px; color:#334155}
-footer{position:relative; z-index:1; border-top:1px solid #e2e8f0; padding:18px; text-align:center; color:#475569}
-.tiny{font-size:12px}
+.card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(2,8,23,.16)}
+.thumb img{width:100%;height:120px;object-fit:cover;display:block}
+.body{padding:12px;display:flex;flex-direction:column;gap:9px}
+.title{font-weight:800;font-size:17px}
+.badges{display:flex;gap:6px;flex-wrap:wrap}
+.badge{font-size:12px;padding:4px 8px;border-radius:999px;background:#e0f2fe;color:#0b1020}
+.desc{color:#334155;font-size:13.5px;line-height:1.35;min-height:38px}
+.progress{height:9px;background:#e2e8f0;border-radius:999px;overflow:hidden}
+.progress>span{display:block;height:100%;background:linear-gradient(90deg,#06b6d4,#a855f7)}
+.progress-label{font-size:12px;color:#334155}
+.footer{margin-top:auto;display:flex}
+.btn{flex:1;text-align:center;padding:9px 10px;border-radius:12px;color:#fff;text-decoration:none;font-weight:700;background:linear-gradient(135deg,#22c55e,#16a34a)}
+footer{text-align:center;padding:18px;border-top:1px solid #e2e8f0;color:#475569;font-size:12px}
 </style>
 </head>
 <body>
-<div class="watermark" aria-hidden="true"></div>
-
 <header>
   <div class="wrap">
     <div class="brand">
-      <div class="logo" aria-hidden="true"></div>
+      <div class="logo"></div>
       <div>
         <h1>Turbo Leaving Cert Spanish — Synge Street</h1>
         <div class="sub">All games in one place. Progress saves locally.</div>
       </div>
     </div>
-    <div class="controls">
-      <label class="search" aria-label="Search games">
-        <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/></svg>
-        <input id="q" type="search" placeholder="Search by title, level, or tag…" />
-      </label>
-    </div>
+    <label class="search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M21 21l-4.3-4.3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/></svg>
+      <input id="q" type="search" placeholder="Search by title, level, or tag…" />
+    </label>
   </div>
 </header>
 
 <main class="wrap">
-  <div id="grid" class="grid" role="list"></div>
-  <div id="empty" class="desc" hidden>No games match your filters yet.</div>
+  <div id="grid" class="grid"></div>
+  <div id="empty" hidden>No games match your filters yet.</div>
 </main>
 
-<footer>
-  <div class="wrap">
-    <div class="tiny">© <span id="year"></span> Synge Street CBS</div>
-  </div>
-</footer>
+<footer>© <span id="year"></span> Synge Street CBS</footer>
 
 <script>
-// --- SVGs ---
-const svgs = {
-  g1:'<svg viewBox="0 0 400 150"><rect width="400" height="150" rx="20" fill="#06b6d4"/></svg>',
-  g2:'<svg viewBox="0 0 400 150"><rect width="400" height="150" rx="20" fill="#22c55e"/></svg>',
-  g3:'<svg viewBox="0 0 400 150"><rect width="400" height="150" rx="20" fill="#f59e0b"/></svg>',
-  g4:'<svg viewBox="0 0 400 150"><rect width="400" height="150" rx="20" fill="#90cdf4"/></svg>',
-  g5:'<svg viewBox="0 0 400 150"><rect width="400" height="150" rx="20" fill="#0ea5e9"/></svg>',
-  g6:'<svg viewBox="0 0 400 150"><rect width="400" height="150" rx="20" fill="#06b6d4"/></svg>',
-  g7:'<svg viewBox="0 0 400 150"><rect width="400" height="150" rx="20" fill="#84cc16"/></svg>',
-  g8:'<svg viewBox="0 0 400 150"><rect width="400" height="150" rx="20" fill="#f97316"/></svg>',
-  g9:'<svg viewBox="0 0 400 150"><rect width="400" height="150" rx="20" fill="#6366f1"/></svg>',
-  g10:'<svg viewBox="0 0 400 150"><rect width="400" height="150" rx="20" fill="#a855f7"/></svg>'
-};
-
-// --- Games ---
-const games = [
-  {title:"Game 1 — Describing Yourself & Routine",svg:svgs.g1,href:"https://seanmc114.github.io/Self-Peers-Present/",desc:"Short → medium sentences. Present tense.",tags:["A2–B1","Present","EN→ES"],bestLevelKey:"game1_bestLevel",totalLevels:10},
-  {title:"Game 2 — Family & Friendship",svg:svgs.g2,href:"https://seanmc114.github.io/Family-Friends-Adjectives/",desc:"Adjective agreement.",tags:["A2–B1","Agreement","EN→ES"],bestLevelKey:"game2_bestLevel",totalLevels:10},
-  {title:"Game 3 — School & Exam Stress",svg:svgs.g3,href:"https://seanmc114.github.io/School-Exams-Rad-Verbs/",desc:"Radical-changing verbs.",tags:["B1","Present","EN→ES"],bestLevelKey:"game3_bestLevel",totalLevels:10},
-  {title:"Game 4 — Hobbies & Free Time",svg:svgs.g4,href:"https://seanmc114.github.io/Hobbies-Free-Time-Reflex/",desc:"Reflexive verbs.",tags:["A2–B1","Reflexives","EN→ES"],bestLevelKey:"game4_bestLevel",totalLevels:10},
-  {title:"Game 5 — Technology & Socials",svg:svgs.g5,href:"https://seanmc114.github.io/LC-Tech-Socials-Pres-Contin./",desc:"Present continuous.",tags:["B1","Continuous","EN→ES"],bestLevelKey:"game5_bestLevel",totalLevels:10},
-  {title:"Game 6 — Travel & Holidays",svg:svgs.g6,href:"https://seanmc114.github.io/Travel-Holidays-Preterite/",desc:"Preterite. Trips, transport, accommodation.",tags:["B1","Preterite","EN→ES"],bestLevelKey:"game6_bestLevel",totalLevels:10},
-  {title:"Game 7 — Environment & Future",svg:svgs.g7,href:"https://seanmc114.github.io/Environment-Future/",desc:"Future, Environment, Challenges.",tags:["B1","Future","EN→ES"],bestLevelKey:"game7_bestLevel",totalLevels:10},
-  {title:"Game 8 — Holidays, Travel, Past",svg:svgs.g8,href:"https://seanmc114.github.io/LC-Travel-Holidays-Past/",desc:"Travel, Holidays, Past Tense",tags:["A2–B1","Past","EN→ES"],bestLevelKey:"game8_bestLevel",totalLevels:10},
-  {title:"Game 9 — Future Plans",svg:svgs.g9,href:"https://seanmc114.github.io/LC-Future-Plans/",desc:"Future & Conditional.",tags:["B1–B2","Future/Cond.","EN→ES"],bestLevelKey:"game9_bestLevel",totalLevels:10},
-  {title:"TURBO",svg:svgs.g10,href:"https://seanmc114.github.io/Turbo/",desc:"Lovely Verbs",tags:["Verbs","All tenses","EN→ES"],bestLevelKey:"game10_bestLevel",totalLevels:10}
+const games=[
+  {title:"Game 1 — Describing Yourself & Routine",img:"https://images.unsplash.com/photo-1600272004161-4a9cc389f1a4?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Self-Peers-Present/",desc:"Short → medium sentences. Present tense.",tags:["A2–B1","Present","EN→ES"],key:"g1"},
+  {title:"Game 2 — Family & Friendship",img:"https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Family-Friends-Adjectives/",desc:"Adjective agreement.",tags:["A2–B1","Agreement","EN→ES"],key:"g2"},
+  {title:"Game 3 — School & Exam Stress",img:"https://images.unsplash.com/photo-1603570419989-8e22f986bf84?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/School-Exams-Rad-Verbs/",desc:"Radical-changing verbs.",tags:["B1","Present","EN→ES"],key:"g3"},
+  {title:"Game 4 — Hobbies & Free Time",img:"https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Hobbies-Free-Time-Reflex/",desc:"Reflexive verbs.",tags:["A2–B1","Reflexives","EN→ES"],key:"g4"},
+  {title:"Game 5 — Technology & Socials",img:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Tech-Socials-Pres-Contin./",desc:"Present continuous.",tags:["B1","Continuous","EN→ES"],key:"g5"},
+  {title:"Game 6 — Travel & Holidays",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Travel-Holidays-Preterite/",desc:"Preterite. Trips, transport, accommodation.",tags:["B1","Preterite","EN→ES"],key:"g6"},
+  {title:"Game 7 — Environment & Future",img:"https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Environment-Future/",desc:"Future & Environment.",tags:["B1","Future","EN→ES"],key:"g7"},
+  {title:"Game 8 — Holidays, Travel, Past",img:"https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Travel-Holidays-Past/",desc:"Travel, Holidays, Past Tense.",tags:["A2–B1","Past","EN→ES"],key:"g8"},
+  {title:"Game 9 — Future Plans",img:"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Future-Plans/",desc:"Future & Conditional.",tags:["B1–B2","Future/Cond.","EN→ES"],key:"g9"},
+  {title:"TURBO",img:"https://images.unsplash.com/photo-1517511620798-cec17d428bc0?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Turbo/",desc:"Lovely Verbs.",tags:["Verbs","All tenses","EN→ES"],key:"g10"}
 ];
 
-// --- Rendering ---
 const grid=document.getElementById("grid");
 const empty=document.getElementById("empty");
 const q=document.getElementById("q");
@@ -153,34 +96,32 @@ document.getElementById("year").textContent=new Date().getFullYear();
 function matchesSearch(g){
   const s=(q.value||"").toLowerCase().trim();
   if(!s)return true;
-  const hay=[g.title,g.desc,...(g.tags||[])].join(" ").toLowerCase();
-  return hay.includes(s);
+  return (g.title+g.desc+g.tags.join(" ")).toLowerCase().includes(s);
 }
-function pctFromBestLevel(game){
-  const best=parseInt(localStorage.getItem(game.bestLevelKey||""),10);
-  if(Number.isFinite(best)&&game.totalLevels)
-    return Math.max(0,Math.min(100,Math.round(best/game.totalLevels*100)));
-  return 0;
-}
+
+function pct(g){const best=parseInt(localStorage.getItem(g.key)||0,10);return Math.min(100,Math.round(best/10*100));}
+
 function card(g){
-  const p=pctFromBestLevel(g);
+  const p=pct(g);
   return `<article class="card">
-    <div class="thumb">${g.svg}</div>
+    <div class="thumb"><img src="${g.img}" alt=""></div>
     <div class="body">
       <h3 class="title">${g.title}</h3>
-      <div class="badges">${(g.tags||[]).map(t=>`<span class="badge">${t}</span>`).join(" ")}</div>
+      <div class="badges">${g.tags.map(t=>`<span class="badge">${t}</span>`).join("")}</div>
       <p class="desc">${g.desc}</p>
       <div class="progress"><span style="width:${p}%"></span></div>
       <div class="progress-label">${p}% complete</div>
-      <div class="footer"><a class="btn play" href="${g.href}" target="_blank">Play</a></div>
+      <div class="footer"><a class="btn" href="${g.href}" target="_blank">Play</a></div>
     </div>
   </article>`;
 }
+
 function render(){
   const list=games.filter(matchesSearch);
   grid.innerHTML=list.map(card).join("");
   empty.hidden=list.length>0;
 }
+
 q.addEventListener("input",render);
 render();
 </script>

@@ -2,24 +2,16 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Turbo Leaving Cert Spanish — Synge Street</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
 :root{
-  --bg:#f7fafc;--card:#ffffff;--text:#0f172a;--muted:#475569;--ring:#7dd3fc;
+  --bg:#f7fafc;--card:#fff;--text:#0f172a;--muted:#475569;
   --shadow:0 8px 22px rgba(2,8,23,.12);--radius:16px;
 }
 *{box-sizing:border-box;margin:0;padding:0}
-body{
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
-  color:var(--text);
-  background:
-    radial-gradient(1000px 400px at 0% 0%,rgba(56,189,248,.25),transparent 60%),
-    radial-gradient(1000px 400px at 100% 0%,rgba(168,85,247,.20),transparent 60%),
-    var(--bg);
-  min-height:100vh;
-}
+body{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);}
 header{position:sticky;top:0;z-index:2;background:rgba(255,255,255,.75);backdrop-filter:blur(10px);border-bottom:1px solid #e2e8f0}
 .wrap{max-width:1100px;margin:auto;padding:16px}
 .brand{display:flex;align-items:center;gap:12px}
@@ -30,14 +22,11 @@ h1{font-size:clamp(20px,3vw,28px)}
 .search input{width:100%;padding:12px 42px;border-radius:999px;border:1.5px solid #cbd5e1;background:#fff}
 .search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);opacity:.6}
 main{padding:22px 18px 48px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:16px}
-.card{
-  background:var(--card);border:1px solid #e2e8f0;border-radius:var(--radius);
-  overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;
-  transition:transform .16s,box-shadow .16s;
-}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:18px}
+.card{background:#fff;border:1px solid #e2e8f0;border-radius:var(--radius);
+ box-shadow:var(--shadow);overflow:hidden;display:flex;flex-direction:column;transition:transform .16s,box-shadow .16s}
 .card:hover{transform:translateY(-3px);box-shadow:0 14px 30px rgba(2,8,23,.16)}
-.thumb img{width:100%;height:150px;object-fit:cover;display:block}
+.thumb img{width:100%;height:160px;object-fit:cover;display:block}
 .body{padding:12px;display:flex;flex-direction:column;gap:9px}
 .title{font-weight:800;font-size:17px}
 .badges{display:flex;gap:6px;flex-wrap:wrap}
@@ -77,16 +66,16 @@ footer{text-align:center;padding:18px;border-top:1px solid #e2e8f0;color:#475569
 
 <script>
 const games=[
-  {title:"Game 1 — Describing Yourself & Routine",img:"https://images.unsplash.com/photo-1616627562658-73053d34ecb5?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Self-Peers-Present/",desc:"Short → medium sentences. Present tense.",tags:["A2–B1","Present","EN→ES"],key:"g1"},
-  {title:"Game 2 — Family & Friendship",img:"https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Family-Friends-Adjectives/",desc:"Adjective agreement.",tags:["A2–B1","Agreement","EN→ES"],key:"g2"},
-  {title:"Game 3 — School & Exam Stress",img:"https://images.unsplash.com/photo-1571260899304-425eee4c7efc?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/School-Exams-Rad-Verbs/",desc:"Radical-changing verbs.",tags:["B1","Present","EN→ES"],key:"g3"},
-  {title:"Game 4 — Hobbies & Free Time",img:"https://images.unsplash.com/photo-1505852679233-d9fd70aff56d?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Hobbies-Free-Time-Reflex/",desc:"Reflexive verbs.",tags:["A2–B1","Reflexives","EN→ES"],key:"g4"},
-  {title:"Game 5 — Technology & Socials",img:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Tech-Socials-Pres-Contin./",desc:"Present continuous.",tags:["B1","Continuous","EN→ES"],key:"g5"},
-  {title:"Game 6 — Travel & Holidays",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Travel-Holidays-Preterite/",desc:"Preterite. Trips, transport, accommodation.",tags:["B1","Preterite","EN→ES"],key:"g6"},
-  {title:"Game 7 — Environment & Future",img:"https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Environment-Future/",desc:"Future, Environment, Challenges.",tags:["B1","Future","EN→ES"],key:"g7"},
-  {title:"Game 8 — Holidays, Travel, Past",img:"https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Travel-Holidays-Past/",desc:"Travel, Holidays, Past Tense",tags:["A2–B1","Past","EN→ES"],key:"g8"},
-  {title:"Game 9 — Future Plans",img:"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Future-Plans/",desc:"Future & Conditional.",tags:["B1–B2","Future/Cond.","EN→ES"],key:"g9"},
-  {title:"TURBO",img:"https://images.unsplash.com/photo-1501594907352-04cda38ebc29?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Turbo/",desc:"Lovely Verbs.",tags:["Verbs","All tenses","EN→ES"],key:"g10"}
+  {title:"Game 1 — Describing Yourself & Routine",img:"https://images.unsplash.com/photo-1600880292089-90a7e086ee0c?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Self-Peers-Present/",desc:"Daily routines and self-description (Present tense).",tags:["A2–B1","Present","EN→ES"],key:"g1"},
+  {title:"Game 2 — Family & Friendship",img:"https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Family-Friends-Adjectives/",desc:"Talking about relatives and friends (agreement).",tags:["A2–B1","Agreement","EN→ES"],key:"g2"},
+  {title:"Game 3 — School & Exam Stress",img:"https://images.unsplash.com/photo-1503676260728-1c00da094a0b?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/School-Exams-Rad-Verbs/",desc:"Radical-changing verbs and school vocabulary.",tags:["B1","Present","EN→ES"],key:"g3"},
+  {title:"Game 4 — Hobbies & Free Time",img:"https://images.unsplash.com/photo-1526401485004-2aa6b8d5aabc?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Hobbies-Free-Time-Reflex/",desc:"Reflexive verbs in leisure contexts.",tags:["A2–B1","Reflexives","EN→ES"],key:"g4"},
+  {title:"Game 5 — Technology & Social Media",img:"https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Tech-Socials-Pres-Contin./",desc:"Present continuous and online safety.",tags:["B1","Continuous","EN→ES"],key:"g5"},
+  {title:"Game 6 — Travel & Holidays (Past)",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Travel-Holidays-Preterite/",desc:"Preterite for travel and vacations.",tags:["B1","Preterite","EN→ES"],key:"g6"},
+  {title:"Game 7 — Environment & Future",img:"https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Environment-Future/",desc:"Future tense and environmental issues.",tags:["B1","Future","EN→ES"],key:"g7"},
+  {title:"Game 8 — Travel Memories (Past Tense)",img:"https://images.unsplash.com/photo-1526778548025-fa2f459cd5c1?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Travel-Holidays-Past/",desc:"Talking about holidays in the past.",tags:["A2–B1","Past","EN→ES"],key:"g8"},
+  {title:"Game 9 — Future Plans & Jobs",img:"https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/LC-Future-Plans/",desc:"Future and conditional — ambitions & careers.",tags:["B1–B2","Future/Cond.","EN→ES"],key:"g9"},
+  {title:"TURBO — Lovely Verbs",img:"https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=60",href:"https://seanmc114.github.io/Turbo/",desc:"Verb mastery across all tenses.",tags:["Verbs","All tenses","EN→ES"],key:"g10"}
 ];
 
 const grid=document.getElementById("grid");
@@ -96,12 +85,9 @@ document.getElementById("year").textContent=new Date().getFullYear();
 
 function matchesSearch(g){
   const s=(q.value||"").toLowerCase().trim();
-  if(!s)return true;
-  return (g.title+g.desc+g.tags.join(" ")).toLowerCase().includes(s);
+  return !s || (g.title+g.desc+g.tags.join(" ")).toLowerCase().includes(s);
 }
-
-function pct(g){const best=parseInt(localStorage.getItem(g.key)||0,10);return Math.min(100,Math.round(best/10*100));}
-
+function pct(g){const n=parseInt(localStorage.getItem(g.key)||0,10);return Math.min(100,Math.round(n/10*100));}
 function card(g){
   const p=pct(g);
   return `<article class="card">
@@ -116,13 +102,11 @@ function card(g){
     </div>
   </article>`;
 }
-
 function render(){
   const list=games.filter(matchesSearch);
   grid.innerHTML=list.map(card).join("");
   empty.hidden=list.length>0;
 }
-
 q.addEventListener("input",render);
 render();
 </script>
